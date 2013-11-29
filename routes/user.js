@@ -1,11 +1,11 @@
-var mongo = require('mongodb');
+
 
 if(process.env.VCAP_SERVICES){
     var env = JSON.parse(process.env.VCAP_SERVICES);
-    var mongo = env['mongodb-1.8'][0]['credentials'];
+     mongo = env['mongodb-1.8'][0]['credentials'];
 }
 else{
-    var mongo = {
+     mongo = {
         "hostname":"localhost",
         "port":27017,
         "username":"",
@@ -26,7 +26,7 @@ var generate_mongo_url = function(obj){
     else{
         return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
     }
-}
+};
 
 var mongourl = generate_mongo_url(mongo);
 
@@ -116,7 +116,7 @@ function removeFriend(collection, user_id, friend_id){
         collection.update({"_id" : user_id}, { $pull : { "friends" : {"_id" : friend_id } } },
             function(err, result){
                 if (err){
-                    console.log('Error rolling back friendship: ' + err)
+                    console.log('Error rolling back friendship: ' + err);
                     return false;
                 }
                 return true;
@@ -126,8 +126,8 @@ function removeFriend(collection, user_id, friend_id){
 }
 
 function removeFriendship(collection, user_id1, user_id2){
-    while (!removeFriend(collection, user_id1, user_id2)){};
-    while (!removeFriend(collection, user_id2, user_id1)){};
+    while (!removeFriend(collection, user_id1, user_id2)){}
+    while (!removeFriend(collection, user_id2, user_id1)){}
 }
 
 function rollbackFriendship(id1, id2, err, response){

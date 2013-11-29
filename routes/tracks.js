@@ -1,11 +1,9 @@
-var mongo = require('mongodb');
-
 if(process.env.VCAP_SERVICES){
     var env = JSON.parse(process.env.VCAP_SERVICES);
-    var mongo = env['mongodb-1.8'][0]['credentials'];
+    mongo = env['mongodb-1.8'][0]['credentials'];
 }
 else{
-    var mongo = {
+    mongo = {
         "hostname":"localhost",
         "port":27017,
         "username":"",
@@ -26,7 +24,7 @@ var generate_mongo_url = function(obj){
     else{
         return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
     }
-}
+};
 
 var mongourl = generate_mongo_url(mongo);
 
@@ -47,7 +45,23 @@ require('mongodb').connect(mongourl, function(err, conn){
 });
 
 var populateDB = function() {
+    var track = {
+        "content": "I've started my trip in New York, then...",
+        "photo": { },
+        "user": { id: ObjectId("529872abb41da00000000002"), name: 'Elad Douenias' },
+        "places": [],
+        "comments": [],
+        "likes": []
+    };
 
+    db.collection('tracks', function(err, collection) {
+        collection.insert(track, {safe:true}, function(err, result) {
+            err ?
+                console.log("err = " + err) :
+                console.log("track result = " + result);
+
+        });
+    });
 };
 
 function isLiked(track_id, user_id){
@@ -104,7 +118,7 @@ exports.unlike = function(req, res){
             }
         );
     }
-}
+};
 
 exports.comment = function(req, res) {
     var id = req.params.id;
@@ -146,4 +160,16 @@ exports.removeComment = function(req, res){
             }
         }
     );
+};
+
+exports.feed = function(req, res){
+    var id = req.params.id;
+    var tracksDal = require('../DAL/tracks');
+    var usersDal = require('../DAL/users');
+    var places = usersDal.getUserPlaces(id);
+    var friends = usersDal.getUserFriends(id);
+
+
+    res.send('');
+
 }
