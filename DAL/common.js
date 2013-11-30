@@ -1,12 +1,12 @@
-function connect(db_name, collection_name, test_data){
-    var mongo = require('mongodb');
+exports.db_connect = function(db_name, collection_name, test_data){
+    var mongo;
 
     if(process.env.VCAP_SERVICES){
         var env = JSON.parse(process.env.VCAP_SERVICES);
-        var mongo = env['mongodb-1.8'][0]['credentials'];
+        mongo = env['mongodb-1.8'][0]['credentials'];
     }
     else{
-        var mongo = {
+        mongo = {
             "hostname" : "localhost",
             "port" : 27017,
             "username" : "",
@@ -27,7 +27,7 @@ function connect(db_name, collection_name, test_data){
         else {
             return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
         }
-    }
+    };
 
     var mongourl = generate_mongo_url(mongo);
 
@@ -59,4 +59,66 @@ function connect(db_name, collection_name, test_data){
     };
 
     return db;
+};
+
+function getCollection(db, collection_name){
+    var response = {
+        status : false,
+        data : null
+    };
+    db.collection(collection_name, function(error, collection){
+        if (error){
+            console.log('Error connecting ' + collection_name + ' collection: ' + error);
+            response.data = error;
+        }
+        response.data = collection;
+        return response;
+    })
 }
+
+exports.isExist = function(db, collection_name, query){
+    collection = getCollection(db, collection_name);
+    var exist = false;
+    if (collection.status){
+        collection.findOne(query, function(error, item) {
+            if (error){
+                console.log('Error connecting ' + collection_name + ' collection: ' + error);
+            }
+            exist = item? true : false;
+        });
+    }
+    return exist;
+};
+
+exports.getItem = function(db, collection_name, query){
+    collection = getCollection(db, collection_name);
+    var item = null;
+    if (collection.status){
+        collection.findOne(query, function(error, result) {
+            if (error){
+                console.log('Error connecting ' + collection_name + ' collection: ' + error);
+            }
+            item = result;
+        });
+    }
+    return item;
+};
+
+exports.updateItem = function(db, collection_name, query, update){
+    collection = getCollection(db, collection_name);
+    var response = collection;
+    if (collection.status){
+        collection = collection.data;
+        collection.update(query, update, { safe : true }, function(error, result) {
+            if (error) {
+                console.log('Error updating '+ collection_name +' : ' + error);
+                response.status = false;
+                response.data = error;
+            }
+            else {
+                response.data = result;
+            }
+        });
+    }
+    return response;
+};
