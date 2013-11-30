@@ -68,3 +68,31 @@ exports.addPlace = function(user, place){
     return common.updateItem(db, collection_name, {'_id':new BSON.ObjectID(user._id)},
         {$push:{'places':{'_id':new BSON.ObjectID(place._id), 'name':place.name}}});
 };
+
+exports.getUserByName = function(userName) 
+{
+	db.collection('users', function(err, collection) 
+	{
+		collection.findOne({'name':userName}).toArray(function(err, user) 
+		{
+			return user;
+		});
+	});	
+};
+
+exports.addUser= function (user)
+{	
+	db.collection('users', function(err, collection) 
+	{
+		collection.insert(user, {safe:true}, function(err, result) {
+			if (err)
+			{
+				return null;
+			} 
+			else
+			{				
+				return result[0]);
+			}
+		});
+	});	
+}
