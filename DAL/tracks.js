@@ -118,3 +118,97 @@ exports.tracksForFeed = function(places, friends, daysAgo) {
     );
 };
 
+exports.getUserTracks = function(req, res) 
+{
+	var userid = req.params.id;
+	if (userid) 
+	{
+		db.collection('tracks', function(err, collection) 
+		{
+			collection.find({'userid':parseInt(userid)}).toArray(function(err, items) 
+			{
+				res.send(items);
+			});
+		});
+	}
+};
+
+exports.addTrack= function (req,res)
+{
+	var track = req.body;	
+	db.collection('tracks', function(err, collection) 
+	{
+		collection.insert(track, {safe:true}, function(err, result) {
+			if (err)
+			{
+				res.send({'error':'An error has occurred'});
+			} 
+			else
+			{
+				res.send(result[0]);
+			}
+		});
+	});	
+}
+
+exports.addPlaceToTrack= function (req,res)
+{
+	var place = req.body;
+	var trackId = req.trackId;
+	db.collection('tracks', function(err, collection) 
+	{
+		collection.update({'trackId':trackId}, {$push:{'places': place}}, function(err, result) {
+			if (err)
+			{
+				res.send({'error':'An error has occurred'});
+			} 
+			else
+			{	 	
+				res.send(result[0]);
+			}
+		});
+	});	
+}
+
+exports.getPlaceTracks = function(req, res) 
+{
+	var placeId = req.params.id;
+	if (placeId) 
+	{
+		db.collection('tracks', function(err, collection) 
+		{
+			collection.find({'places':{$elemMatch:{'id':placeId}}}).toArray(function(err, items) 
+			{
+				res.send(items);
+			});
+		});
+	}
+};
+
+//not sure since many tracks can have the same place..
+exports.getPlaceByName = function(req, res) 
+{
+	var placeName = req.params.name;
+	if (placeName) 
+	{
+		db.collection('tracks', function(err, collection) 
+		{
+			collection.findOne({'places':{$elemMatch:{'name':placeName}}}, function(err, track)//Foreach track, search if track contains placename 
+			{				
+				var index = -1;
+				for(var i = 0, len = track.places.length; i < len; i++) 
+				{
+					if (track.places[i].name === placeName) 
+					{
+						index = i;
+						break;
+					}
+				}
+
+				var place = track.places[index];
+				res.send(place);
+			});
+		});
+	}
+};
+
