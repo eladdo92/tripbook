@@ -52,45 +52,72 @@ exports.removeComment = function(request, response){
     response.send(dal.removeComment(id, comment_id));
 };
 
-exports.getTracksUploadedByUser = function(req, res) {
+exports.getTracksUploadedByUser = function(req, res) 
+{
 	var userId = req.params.id;
-	if (userId) 
+	if (userId)
 	{
-		res.send(dal.getUserTracks(userId));
+		dal.getUserTracks(userId, function(err, result)
+		{
+			if(result)
+				res.send(result);
+			else
+				res.send({'error':'An error has occurred'});
+		});
 	}
 };
 
-exports.getTracksTagedWithPlace = function(req, res){
+exports.getTracksTagedWithPlace = function(req, res) 
+{
 	var placeId = req.params.id;
-	if (placeId) 
+	if (placeId)
 	{
-		res.send(dal.getPlaceTracks(placeId));
+		dal.getPlaceTracks(placeId, function(err, result)
+		{
+			if(result)
+				res.send(result);
+			else
+				res.send({'error':'An error has occurred'});
+		});
 	}
 };
 
-exports.PostTrack = function (req,res){
+exports.PostTrack = function (req,res)
+{
 	var track = req.body;
-	var result = dal.addTrack(track);
-	if(result)
-		res.send(result);	
-	else
-		res.send({'error':'An error has occurred'});
-};
+	dal.addTrack(track, function(err, result)
+	{
+		if(result)
+			res.send(result);
+		else
+			res.send({'error':'An error has occurred'});
+	});
+}
 
-exports.TagTrackWithPlace= function (req,res){
+exports.TagTrackWithPlace= function (req,res)
+{
 	var place = req.body;
 	var trackId = req.trackId;
-	var result = dal.addPlaceToTrack(place, trackId);
-	if(result)
-		res.send(result);	
-	else
-		res.send({'error':'An error has occurred'});	
-};
-
-exports.SearchPlace = function(req, res){
-	var placeName = req.params.name;
-	if (placeName) 
+	dal.addPlaceToTrack(place, trackId, function(err, result)
 	{
-		res.send(dal.getPlaceByName(placeName));
+		if(result)
+			res.send(result);
+		else
+			res.send({'error':'An error has occurred'});
+	});
+}
+
+exports.SearchPlace = function(req, res) 
+{
+	var placeName = req.params.name;
+	if (placeName)
+	{
+		dal.getPlaceByName(placeName, function(err, result)
+		{
+			if(result)
+				res.send(result);
+			else
+				res.send({'error':'An error has occurred'});
+		});
 	}
 };

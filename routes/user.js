@@ -45,22 +45,32 @@ exports.createFriendship = function(request, response){
     response.send(friendship);
 };
 
-exports.SearchUser = function(req, res) {
+exports.SearchUser = function(req, res) 
+{
 	var userName = req.params.userName;
 	if (userName) 
 	{
-		res.send(dal.getUserByName());
+		dal.getUserByName(userName, function(err, result)
+		{		
+			if(result)
+				res.send(result);	
+			else
+				res.send({'error':'An error has occurred'});
+		});		
 	}
 };
 
-exports.Register= function (req,res){
+exports.Register= function (req,res)
+{
 	var user = req.body;
-	var result = dal.addUser(user);
-	if(result)
-		res.send(result);	
-	else
-		res.send({'error':'An error has occurred'});
-};
+	dal.addUser(user, function(err, result) 
+	{
+		if(result)
+			res.send(result);	
+		else
+			res.send({'error':'An error has occurred'});
+	});
+}
 
 exports.Feed = function(req, res) {
     var userid = req.params.id;
