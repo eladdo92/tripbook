@@ -69,8 +69,13 @@ exports.addPlace = function(user, place){
         {$push:{'places':{'_id':new BSON.ObjectID(place._id), 'name':place.name}}});
 };
 
+function userNameIndex() {
+    db.ensureIndex(collection_name, {name: 1}, {background:true});
+}
+
 exports.getUserByName = function(userName) {
-	db.collection('users', function(err, collection) 
+    userNameIndex();
+    db.collection(collection_name, function(err, collection)
 	{
 		collection.findOne({'name':userName}).toArray(function(err, user) 
 		{
@@ -98,8 +103,13 @@ exports.addUser= function (user)
 
 exports.getUser = getUser;
 
+function userPlacesIndex() {
+    db.ensureIndex(collection_name, {places: 1}, {background:true});
+}
+
 exports.usersThatFollow = function(placeId, callback) {
-    db.collection('users', function(err, collection)
+    userPlacesIndex();
+    db.collection(collection_name, function(err, collection)
     {
         collection.find({ 'places.id': placeId }, function(err, result) {
             if(err) callback(err, null);

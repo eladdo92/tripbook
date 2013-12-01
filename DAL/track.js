@@ -76,7 +76,7 @@ function daysAgoDate(daysAgo) {
 }
 
 exports.tracksForFeed = function(places, friends, daysAgo, callback) {
-    db.collection('tracks', function(err, collection){
+    db.collection(collection_name, function(err, collection){
             if (err) return null;
 
             collection.find(
@@ -96,11 +96,16 @@ exports.tracksForFeed = function(places, friends, daysAgo, callback) {
     );
 };
 
+function tracksUsersIndex() {
+    db.ensureIndex(collection_name, {user: 1}, {background:true});
+}
+
 exports.getUserTracks = function(userId) 
 {
-	db.collection('tracks', function(err, collection) 
+    tracksUsersIndex();
+	db.collection(collection_name, function(err, collection)
 	{
-		collection.find({'userId':parseInt(userId)}).toArray(function(err, tracks) 
+		collection.find({'user.id':parseInt(userId)}).toArray(function(err, tracks)
 		{
 			return tracks;
 		});
