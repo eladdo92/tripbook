@@ -69,6 +69,7 @@ exports.addPlace = function(user, place){
         {$push:{'places':{'_id':new BSON.ObjectID(place._id), 'name':place.name}}});
 };
 
+<<<<<<< HEAD
 exports.addUser = function (req,res){
     var user = req.body;
     db.collection('users', function(err, collection)
@@ -99,3 +100,32 @@ exports.getUserByName = function(req, res){
         });
     }
 };
+=======
+exports.getUserByName = function(userName) 
+{
+	db.collection('users', function(err, collection) 
+	{
+		collection.findOne({'name':userName}).toArray(function(err, user) 
+		{
+			return user;
+		});
+	});	
+};
+
+exports.addUser= function (user)
+{	
+	db.collection('users', function(err, collection) 
+	{
+		collection.insert(user, {safe:true}, function(err, result) {
+			if (err)
+			{
+				return null;
+			} 
+			else
+			{				
+				return result[0]);
+			}
+		});
+	});	
+}
+>>>>>>> b82323325bdb5c8272593cce12cac411d4ba8c16

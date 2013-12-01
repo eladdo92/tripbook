@@ -51,3 +51,51 @@ exports.removeComment = function(request, response){
 
     response.send(dal.removeComment(id, comment_id));
 };
+
+exports.getTracksUploadedByUser = function(req, res) 
+{
+	var userId = req.params.id;
+	if (userId) 
+	{
+		res.send(dal.getUserTracks(userId););
+	}
+};
+
+exports.getTracksTagedWithPlace = function(req, res) 
+{
+	var placeId = req.params.id;
+	if (placeId) 
+	{
+		res.send(dal.getPlaceTracks(placeId););
+	}
+};
+
+exports.PostTrack = function (req,res)
+{
+	var track = req.body;
+	var result = dal.addTrack(track)
+	if(result)
+		res.send(result);	
+	else
+		res.send({'error':'An error has occurred'});
+}
+
+exports.TagTrackWithPlace= function (req,res)
+{
+	var place = req.body;
+	var trackId = req.trackId;
+	var result = dal.addPlaceToTrack(place, trackId)
+	if(result)
+		res.send(result);	
+	else
+		res.send({'error':'An error has occurred'});	
+}
+
+exports.SearchPlace = function(req, res) 
+{
+	var placeName = req.params.name;
+	if (placeName) 
+	{
+		res.send(dal.getPlaceByName(placeName););
+	}
+};

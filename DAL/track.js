@@ -117,3 +117,82 @@ exports.tracksForFeed = function(places, friends, daysAgo) {
     );
 };
 
+exports.getUserTracks = function(userId) 
+{
+	db.collection('tracks', function(err, collection) 
+	{
+		collection.find({'userId':parseInt(userId)}).toArray(function(err, tracks) 
+		{
+			return tracks;
+		});
+	});	
+};
+
+exports.addTrack= function (track)
+{
+	db.collection('tracks', function(err, collection) 
+	{
+		collection.insert(track, {safe:true}, function(err, result) 
+		{
+			if (err)
+			{
+				return null;
+			} 
+			else
+			{
+				return result[0];
+			}
+		});
+	});	
+}
+
+exports.getPlaceTracks = function(placeId) 
+{
+	db.collection('tracks', function(err, collection) 
+	{
+		collection.find({'places':{$elemMatch:{'id':placeId}}}).toArray(function(err, tracks) 
+		{
+			return tracks;
+		});
+	});
+};
+
+exports.addPlaceToTrack= function (place, trackId)
+{	
+	db.collection('tracks', function(err, collection) 
+	{
+		collection.update({'trackId':trackId}, {$push:{'places': place}}, function(err, result) {
+			if (err)
+			{				
+				return null;
+			} 
+			else
+			{	 
+				return result[0];				
+			}
+		});
+	});	
+}
+
+//not sure since many tracks can have the same place..
+exports.getPlaceByName = function(placeName) 
+{
+	db.collection('tracks', function(err, collection) 
+	{
+		collection.findOne({'places':{$elemMatch:{'name':placeName}}}, function(err, track)
+		{				
+			var index = -1;
+			for(var i = 0, len = track.places.length; i < len; i++) 
+			{
+				if (track.places[i].name === placeName) 
+				{
+					index = i;
+					break;
+				}
+			}
+
+			var place = track.places[index];
+			return place;
+		});
+	});	
+};
