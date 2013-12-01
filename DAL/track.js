@@ -77,7 +77,7 @@ function daysAgoDate(daysAgo) {
 
 exports.tracksForFeed = function(places, friends, daysAgo, callback) {
     db.collection('tracks', function(err, collection){
-            if (err) return null;
+            if (err) return;
 
             collection.find(
                 {
@@ -111,7 +111,7 @@ exports.getUserTracks = function(userId, callback)
 			if (err)
 				callback(err, null);
 			else			
-				callback(null, tracks;);			
+				callback(null, tracks);
 		});
 	});	
 };
@@ -128,7 +128,7 @@ exports.addTrack= function (track, callback)
 				callback(null, result[0]);
 		});
 	});	
-}
+};
 
 exports.getPlaceTracks = function(placeId, callback) 
 {
@@ -139,7 +139,7 @@ exports.getPlaceTracks = function(placeId, callback)
 			if (err)
 				callback(err, null);
 			else
-				callback(null, tracks;);
+				callback(null, tracks);
 		});
 	});
 };
@@ -156,7 +156,7 @@ exports.addPlaceToTrack= function (place, trackId, callback)
 				callback(null, result[0]);
 		});
 	});	
-}
+};
 
 //not sure since many tracks can have the same place..
 exports.getPlaceByName = function(placeName, callback) 
