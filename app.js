@@ -30,8 +30,23 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.post('/users', user.addFriend);
-app.get('/feed', track.feed);
+//CREATE
+app.post('/users/new', user.Register);
+app.post('/tracks/new', track.PostTrack);
+//READ
+app.get('/users', user.SearchUser);
+app.get('/tracks/place/:id', track.getTracksTagedWithPlace);
+app.get('/tracks/user/:id', track.getTracksUploadedByUser);
+app.get('/place', track.SearchPlace);
+//UPDATE
+app.put('/user/friend/new', user.createFriendship);
+app.put('/user/place/follow', user.followPlace);
+app.put('/track/comment', track.comment);
+app.put('/track/like', track.like);
+app.put('/track/place/tag', track.TagTrackWithPlace);
+//DELETE
+app.delete('/track/comment/:id',track.removeComment);
+app.delete('/track/comment/:id',track.unlike);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -45,8 +45,7 @@ exports.createFriendship = function(request, response){
     response.send(friendship);
 };
 
-exports.SearchUser = function(req, res) 
-{
+exports.SearchUser = function(req, res) {
 	var userName = req.params.userName;
 	if (userName) 
 	{
@@ -54,12 +53,11 @@ exports.SearchUser = function(req, res)
 	}
 };
 
-exports.Register= function (req,res)
-{
+exports.Register= function (req,res){
 	var user = req.body;
-	var result = dal.addUser(user)
+	var result = dal.addUser(user);
 	if(result)
 		res.send(result);	
 	else
 		res.send({'error':'An error has occurred'});
-}
+};
