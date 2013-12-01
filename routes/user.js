@@ -61,3 +61,30 @@ exports.Register= function (req,res){
 	else
 		res.send({'error':'An error has occurred'});
 };
+
+exports.Feed = function(req, res) {
+    var userid = req.params.id;
+    var daysAgo = req.params.daysAgo || 1;
+
+    var user = dal.getUser(userid);
+
+    var places = user.places.toArray();
+    var friends = user.friends.toArray();
+
+    var placesIds = [];
+    places.forEach(function(item){
+        placesIds.push(item.id);
+    });
+
+    var friendsIds = [];
+    friends.forEach(function(item){
+        friendsIds.push(item.id);
+    });
+
+    dal.tracksForFeed(placesIds,friendsIds, daysAgo, function(err, result) {
+        if(result)
+            res.send(result);
+        else
+            res.send({'error':'An error has occurred'});
+    });
+};

@@ -21,3 +21,10 @@ var db = common.db_connect('tripbook', collection_name, test_data);
 exports.isPlaceExist = function(id){
     return common.isExist(db, collection_name, {'_id':new BSON.ObjectID(id)});
 };
+
+exports.followers = function(placeId, callback) {
+    require('user').usersThatFollow(placeId, function(err, result) {
+        if(err) callback(err, null);
+        else callback(null, result.toArray());
+    });
+}

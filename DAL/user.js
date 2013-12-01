@@ -95,3 +95,16 @@ exports.addUser= function (user)
 		});
 	});	
 };
+
+exports.getUser = getUser;
+
+exports.usersThatFollow = function(placeId, callback) {
+    db.collection('users', function(err, collection)
+    {
+        collection.find({ 'places.id': placeId }, function(err, result) {
+            if(err) callback(err, null);
+            else callback(null, result.toArray());
+        });
+    });
+
+};

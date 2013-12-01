@@ -66,7 +66,7 @@ function objectIdWithTimestamp(timestamp) {
     // Convert date object to hex seconds since Unix epoch
     var hexSeconds = Math.floor(timestamp/1000).toString(16);
 
-    return mongo.ObjectId(hexSeconds + "0000000000000000");
+    return require('mongodb').ObjectId(hexSeconds + "0000000000000000");
 }
 
 function daysAgoDate(daysAgo) {
@@ -75,44 +75,23 @@ function daysAgoDate(daysAgo) {
     return date;
 }
 
-function errorResponse(msg, res){
-    console.log('Error updating tracks collection: ' + msg);
-    res.send({'error':'An error has occurred'});
-}
-
-exports.tracksForFeed = function(places, friends, daysAgo) {
+exports.tracksForFeed = function(places, friends, daysAgo, callback) {
     db.collection('tracks', function(err, collection){
-            if (err){
-                errorResponse(err, res);
-            }
-            else {
-                collection.find(
-                    {
-                        $or: [
-                            {
-                                user: {
-                                    id: { $in: friends }
-                                }
-                            },
-                            {
-                                places: {
-                                    id: { $in: places }
-                                }
-                            }
-                        ],
-                        $and: {
-                            _id: {
-                                $gt: objectIdWithTimestamp(daysAgoDate(daysAgo))
-                            }
-                        }
-                    },
-                    function(err, result) {
-                        if (err) {
-                            errorResponse(err, res);
-                        }
-                        return result;
-                    });
-            }
+            if (err) return null;
+
+            collection.find(
+                {
+                    _id: { $gt: objectIdWithTimestamp(daysAgoDate(daysAgo)) },
+                    $or: [
+                        { user: { id: { $in: friends } } },
+                        { places: { id: { $in: places } } }
+                    ]
+                },
+                function(err, result) {
+                    if (err) callback(err, null);
+                    else callback(null, result.toArray());
+                });
+
         }
     );
 };
