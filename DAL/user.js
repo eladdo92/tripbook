@@ -76,16 +76,13 @@ function userNameIndex() {
 exports.getUserByName = function(userName) {
     userNameIndex();
     db.collection(collection_name, function(err, collection)
-exports.getUserByName = function(userName, callback) 
-{
-	db.collection('users', function(err, collection) 
-	{
+    {
 		collection.findOne({'name':userName}).toArray(function(err, user) 
 		{
 			if (err)
 				callback(err, null);
 			else			
-				callback(null, user;);
+				callback(null, user);
 		});
 	});	
 };
@@ -102,7 +99,7 @@ exports.addUser = function (user, callback)
 				callback(null, result[0]);
 		});
 	});	
-}
+};
 
 exports.getUser = getUser;
 
@@ -119,5 +116,4 @@ exports.usersThatFollow = function(placeId, callback) {
             else callback(null, result.toArray());
         });
     });
-
 };
