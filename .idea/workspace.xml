@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3af7c42b-cd30-4fc2-9b4c-4f530c1bd5c5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DAL/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DAL/tracks.js" afterPath="$PROJECT_DIR$/DAL/tracks.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DAL/users.js" afterPath="$PROJECT_DIR$/DAL/users.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DAL/user.js" afterPath="$PROJECT_DIR$/DAL/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tripbook.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,50 +25,7 @@
     <favorites_list name="tripbook" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="common.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DAL/common.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="57" selection-start="241" selection-end="241" vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="1139">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DAL/users.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
-              <folding>
-                <element signature="e#12#96#0" expanded="false" />
-                <element signature="e#111#197#0" expanded="false" />
-                <element signature="e#212#296#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="1" selection-start="3119" selection-end="3119" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3077">
-              <folding>
-                <element signature="e#1227#2183#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tracks.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DAL/tracks.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="31" selection-start="31" selection-end="31" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -87,9 +43,15 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/DAL/place.js" />
+        <option value="$PROJECT_DIR$/routes/user.js" />
+        <option value="$PROJECT_DIR$/routes/track.js" />
         <option value="$PROJECT_DIR$/DAL/common.js" />
+        <option value="$PROJECT_DIR$/DAL/track.js" />
         <option value="$PROJECT_DIR$/DAL/tracks.js" />
         <option value="$PROJECT_DIR$/DAL/users.js" />
+        <option value="$PROJECT_DIR$/DAL/user.js" />
       </list>
     </option>
   </component>
@@ -125,7 +87,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -174,10 +135,19 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/tripbook" />
+    <property name="FullScreen" value="false" />
+    <property name="dir.diff.last.used.directory" value="$USER_HOME$/Desktop/tripbook" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Master\Documents\GitHub\tripbook\DAL" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
@@ -225,29 +195,47 @@
       <created>1385817653603</created>
       <updated>1385817653603</updated>
     </task>
+    <task id="LOCAL-00001" summary="refactor the remove and update methods">
+      <created>1385836608929</created>
+      <updated>1385836608929</updated>
+    </task>
+    <task id="LOCAL-00002" summary="refactor the remove and update methods">
+      <created>1385837222743</created>
+      <updated>1385837222743</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactor the remove and update methods">
+      <created>1385837247627</created>
+      <updated>1385837247627</updated>
+    </task>
+    <task id="LOCAL-00004" summary="merge users file to user and tracks file to track">
+      <created>1385838405166</created>
+      <updated>1385838405166</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.670418" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -257,56 +245,135 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="refactor the create friendship method" />
+    <MESSAGE value="refactor the remove and update methods" />
+    <MESSAGE value="merge users file to user and tracks file to track" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge users file to user and tracks file to track" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/DAL/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/tracks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="5" selection-start="1193" selection-end="1193" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="3060">
-          <folding />
+        <state line="100" column="2" selection-start="2875" selection-end="2875" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="680">
+          <folding>
+            <element signature="e#12#96#0" expanded="false" />
+            <element signature="e#111#197#0" expanded="false" />
+            <element signature="e#212#296#0" expanded="false" />
+            <element signature="n#!!block;n#getUser#0" expanded="false" />
+            <element signature="n#!!block;n#hasPlace#0" expanded="false" />
+            <element signature="n#!!block;n#isFriendExist#0" expanded="false" />
+            <element signature="e#954#1054#0" expanded="false" />
+            <element signature="e#1096#1183#0" expanded="false" />
+            <element signature="e#1228#1519#0" expanded="false" />
+            <element signature="e#1274#1339#0" expanded="false" />
+            <element signature="e#1573#1807#0" expanded="false" />
+            <element signature="e#1617#1754#0" expanded="false" />
+            <element signature="e#1850#2128#0" expanded="false" />
+            <element signature="e#1889#1954#0" expanded="false" />
+            <element signature="e#2167#2535#0" expanded="false" />
+            <element signature="e#2580#2874#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DAL/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="57" selection-start="241" selection-end="241" vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="1139">
-          <folding />
-        </state>
+        <state line="105" column="0" selection-start="3133" selection-end="3133" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="238" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DAL/users.js">
+    <entry file="file://$PROJECT_DIR$/views/index.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
-          <folding>
-            <element signature="e#12#96#0" expanded="false" />
-            <element signature="e#111#197#0" expanded="false" />
-            <element signature="e#212#296#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="596" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="17" selection-start="121" selection-end="121" vertical-scroll-proportion="0.17863397" vertical-offset="0" max-vertical-offset="571" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="27" selection-start="755" selection-end="755" vertical-scroll-proportion="0.88422817" vertical-offset="0" max-vertical-offset="748" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAL/place.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="2" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="1" selection-start="3119" selection-end="3119" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3077">
+        <state line="11" column="53" selection-start="384" selection-end="385" vertical-scroll-proportion="0.32749563" vertical-offset="0" max-vertical-offset="748" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/track.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="37" selection-start="938" selection-end="938" vertical-scroll-proportion="0.23817864" vertical-offset="0" max-vertical-offset="571" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="109" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="596" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAL/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="0" selection-start="3133" selection-end="3133" vertical-scroll-proportion="0.19966443" vertical-offset="0" max-vertical-offset="596" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAL/track.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="0" selection-start="2632" selection-end="3822" vertical-scroll-proportion="0.0" vertical-offset="101" max-vertical-offset="697">
           <folding>
-            <element signature="e#1227#2183#0" expanded="false" />
+            <element signature="e#12#228#0" expanded="false" />
+            <element signature="n#!!block;n#isCommentExist#0" expanded="false" />
+            <element signature="n#!!block;n#getTrack#0" expanded="false" />
+            <element signature="n#!!block;n#isLiked#0" expanded="false" />
+            <element signature="e#859#941#0" expanded="false" />
+            <element signature="e#998#1238#0" expanded="false" />
+            <element signature="e#1045#1185#0" expanded="false" />
+            <element signature="e#1289#1413#0" expanded="false" />
+            <element signature="e#1464#1684#0" expanded="false" />
+            <element signature="e#1499#1629#0" expanded="false" />
+            <element signature="e#1732#1953#0" expanded="false" />
+            <element signature="e#1768#1898#0" expanded="false" />
+            <element signature="n#!!block;n#objectIdWithTimestamp#0" expanded="false" />
+            <element signature="e#2121#2169#0" expanded="false" />
+            <element signature="n#!!block;n#daysAgoDate#0" expanded="false" />
+            <element signature="n#!!block;n#errorResponse#0" expanded="false" />
+            <element signature="e#2691#3821#0" expanded="false" />
+            <element signature="e#3150#3313#0" expanded="false" />
+            <element signature="e#3192#3283#0" expanded="false" />
+            <element signature="e#3406#3518#0" expanded="false" />
+            <element signature="e#3610#3786#0" expanded="false" />
+            <element signature="e#3645#3725#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DAL/tracks.js">
+    <entry file="file://$PROJECT_DIR$/DAL/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="31" selection-start="31" selection-end="31" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292">
-          <folding />
+        <state line="100" column="2" selection-start="2875" selection-end="2875" vertical-scroll-proportion="0.82885903" vertical-offset="50" max-vertical-offset="646">
+          <folding>
+            <element signature="e#12#96#0" expanded="false" />
+            <element signature="e#111#197#0" expanded="false" />
+            <element signature="e#212#296#0" expanded="false" />
+            <element signature="n#!!block;n#getUser#0" expanded="false" />
+            <element signature="n#!!block;n#hasPlace#0" expanded="false" />
+            <element signature="n#!!block;n#isFriendExist#0" expanded="false" />
+            <element signature="e#954#1054#0" expanded="false" />
+            <element signature="e#1096#1183#0" expanded="false" />
+            <element signature="e#1228#1519#0" expanded="false" />
+            <element signature="e#1274#1339#0" expanded="false" />
+            <element signature="e#1573#1807#0" expanded="false" />
+            <element signature="e#1617#1754#0" expanded="false" />
+            <element signature="e#1850#2128#0" expanded="false" />
+            <element signature="e#1889#1954#0" expanded="false" />
+            <element signature="e#2167#2535#0" expanded="false" />
+            <element signature="e#2580#2874#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
