@@ -76,30 +76,33 @@ function userNameIndex() {
 exports.getUserByName = function(userName) {
     userNameIndex();
     db.collection(collection_name, function(err, collection)
+exports.getUserByName = function(userName, callback) 
+{
+	db.collection('users', function(err, collection) 
 	{
 		collection.findOne({'name':userName}).toArray(function(err, user) 
 		{
-			return user;
+			if (err)
+				callback(err, null);
+			else			
+				callback(null, user;);
 		});
 	});	
 };
 
-exports.addUser= function (user)
+exports.addUser = function (user, callback)
 {	
 	db.collection('users', function(err, collection) 
 	{
-		collection.insert(user, {safe:true}, function(err, result) {
-			if (err)
-			{
-				return null;
-			} 
+		collection.insert(user, {safe:true}, function(err, result) 
+		{
+			if (err)			
+				callback(err, null);			
 			else
-			{				
-				return result[0];
-			}
+				callback(null, result[0]);
 		});
 	});	
-};
+}
 
 exports.getUser = getUser;
 
