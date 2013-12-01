@@ -96,82 +96,87 @@ exports.tracksForFeed = function(places, friends, daysAgo, callback) {
     );
 };
 
-exports.getUserTracks = function(userId) 
+exports.getUserTracks = function(userId, callback) 
 {
 	db.collection('tracks', function(err, collection) 
 	{
 		collection.find({'userId':parseInt(userId)}).toArray(function(err, tracks) 
 		{
-			return tracks;
+			if (err)
+				callback(err, null);
+			else			
+				callback(null, tracks;);			
 		});
 	});	
 };
 
-exports.addTrack= function (track)
+exports.addTrack= function (track, callback)
 {
 	db.collection('tracks', function(err, collection) 
 	{
 		collection.insert(track, {safe:true}, function(err, result) 
 		{
 			if (err)
-			{
-				return null;
-			} 
+				callback(err, null);
 			else
-			{
-				return result[0];
-			}
+				callback(null, result[0]);
 		});
 	});	
 }
 
-exports.getPlaceTracks = function(placeId) 
+exports.getPlaceTracks = function(placeId, callback) 
 {
 	db.collection('tracks', function(err, collection) 
 	{
 		collection.find({'places':{$elemMatch:{'id':placeId}}}).toArray(function(err, tracks) 
 		{
-			return tracks;
+			if (err)
+				callback(err, null);
+			else
+				callback(null, tracks;);
 		});
 	});
 };
 
-exports.addPlaceToTrack= function (place, trackId)
+exports.addPlaceToTrack= function (place, trackId, callback)
 {	
 	db.collection('tracks', function(err, collection) 
 	{
-		collection.update({'trackId':trackId}, {$push:{'places': place}}, function(err, result) {
+		collection.update({'trackId':trackId}, {$push:{'places': place}}, function(err, result) 
+		{
 			if (err)
-			{				
-				return null;
-			} 
+				callback(err, null);
 			else
-			{	 
-				return result[0];				
-			}
+				callback(null, result[0]);
 		});
 	});	
 }
 
 //not sure since many tracks can have the same place..
-exports.getPlaceByName = function(placeName) 
+exports.getPlaceByName = function(placeName, callback) 
 {
 	db.collection('tracks', function(err, collection) 
 	{
 		collection.findOne({'places':{$elemMatch:{'name':placeName}}}, function(err, track)
-		{				
-			var index = -1;
-			for(var i = 0, len = track.places.length; i < len; i++) 
+		{			
+			if (err)
+				callback(err, null);
+			else
 			{
-				if (track.places[i].name === placeName) 
+				var index = -1;
+				for(var i = 0, len = track.places.length; i < len; i++) 
 				{
-					index = i;
-					break;
+					if (track.places[i].name === placeName) 
+					{
+						index = i;
+						break;
+					}
 				}
-			}
 
-			var place = track.places[index];
-			return place;
+				var place = track.places[index];
+
+				callback(null, place;);
+			}
 		});
-	});	
+	});
 };
