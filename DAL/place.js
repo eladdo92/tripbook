@@ -1,3 +1,8 @@
+
+var config = require('./../configuration');
+
+var db_name = config.database_name;
+var collection_name = config.places_collection;
 var place1 = {
     name:"Las Vegas"
 };
@@ -12,19 +17,95 @@ var place3 = {
 
 var test_data = [place1, place2, place3];
 
-var common = require('common');
+var mongo;
 
-var collection_name = 'places';
+if(process.env.VCAP_SERVICES){
+    var env = JSON.parse(process.env.VCAP_SERVICES);
+    mongo = env['mongodb-1.8'][0]['credentials'];
+}
+else{
+    mongo = {
+        "hostname" : config.database_host,
+        "port" : config.database_port,
+        "username" : "",
+        "password" : "",
+        "name" : "",
+        "db" : db_name
+    }
+}
 
-var db = common.db_connect('tripbook', collection_name, test_data);
+var generate_mongo_url = function(obj){
+    obj.hostname = (obj.hostname || 'localhost');
+    obj.port = (obj.port || 27017);
+    obj.db = (obj.db || 'test');
 
-exports.isPlaceExist = function(id){
-    return common.isExist(db, collection_name, {'_id':new BSON.ObjectID(id)});
+    if(obj.username && obj.password){
+        return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }
+    else {
+        return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }
 };
 
-exports.followers = function(placeId, callback) {
+var mongourl = generate_mongo_url(mongo);
+
+var db = null;
+
+var BSON = require('mongodb').BSONPure;
+
+require('mongodb').connect(mongourl, function(err, conn){
+    db = conn;
+    if(!err) {
+        console.log("Connected to '" + db_name + "' database");
+        db.collection(collection_name, {strict:true}, function(err, collection) {
+            if (err) {
+                console.log("The '" + collection_name + "' collection doesn't exist. Creating it with sample data...");
+                populateDB();
+            }
+        });
+    }
+});
+
+var populateDB = function() {
+    test_data.forEach(function(item){
+        db.collection(collection_name, function(err, collection) {
+            collection.insert(item, {safe:true}, function(err, result) {
+                console.log("item1 result="+result);
+                console.log("err="+err);
+            });
+        });
+    });
+};
+
+var connect_collection = function(callback){
+    require('mongodb').connect(mongourl, function(err, conn){
+        db = conn;
+        if(!err) {
+            db.collection(collection_name, function(error, collection){
+                if (error) callback(error, null);
+                else {
+                    callback(null, collection);
+                }
+            });
+        }
+    });
+};
+
+exports.getPlaces = function(callback){
+    connect_collection(function(error, collection){
+        if (error) callback(error, null);
+        else {
+            collection.find().toArray(function(error, result) {
+                if (error) callback(error, null);
+                else callback(null, result);
+            });
+        }
+    });
+};
+
+exports.followers = function(placeId, callback){
     require('user').usersThatFollow(placeId, function(err, result) {
         if(err) callback(err, null);
         else callback(null, result.toArray());
     });
-}
+};

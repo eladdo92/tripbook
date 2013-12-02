@@ -1,59 +1,70 @@
 var dal = require('../DAL/track');
 
-exports.like = function(request, response) {
-    var id = request.params.id;
-    var user_id  = request.body;
+exports.list = function(request, response){
+    dal.getTracks(function(error, result){
+        if(result)
+            response.send(result);
+        else
+            response.send({'error':'An error has occurred',
+                'innerError':error});
+    });
+};
 
-    var exist = dal.isTrackExist(id);
+exports.like = function(request, response){
 
-    if (!exist){
-        response.send({'error': 'the track does not exist'});
-    }
+    var track_id = request.params.id;
+    var user_id  = request.body.user_id;
 
-    response.send(dal.addLike(id, user_id));
+    dal.addLike(track_id, user_id, function(error, result){
+        if(result)
+            response.send(result);
+        else
+            response.send({'error':'An error has occurred',
+                'innerError':error});
+    });
+};
+
+exports.comment = function(request, response){
+
+    var track_id = request.params.id;
+    var comment  = request.body;
+    dal.addComment(track_id, comment, function(error, result){
+        if(result)
+            response.send(result);
+        else
+            response.send({'error':'An error has occurred',
+                'innerError':error});
+    });
 };
 
 exports.unlike = function(request, response){
-    var id = request.params.id;
-    var user_id  = request.body;
 
-    var exist = dal.isTrackExist(id);
+    var track_id = request.params.id;
+    var user_id  = request.body.user_id;
 
-    if (!exist){
-        response.send({'error': 'the track does not exist'});
-    }
-
-    response.send(dal.removeLike(id, user_id));
-};
-
-exports.comment = function(request, response) {
-    var id = request.params.id;
-    var comment  = request.body;
-
-    var exist = dal.isTrackExist(id);
-
-    if (!exist){
-        response.send({'error': 'the track does not exist'});
-    }
-
-    response.send(dal.addComment(id, comment));
+    dal.removeLike(track_id, user_id, function(error, result){
+        if(result)
+            response.send(result);
+        else
+            response.send({'error':'An error has occurred',
+                'innerError':error});
+    });
 };
 
 exports.removeComment = function(request, response){
-    var id = request.params.id;
-    var comment_id  = request.body;
 
-    var exist = dal.isTrackExist(id);
-
-    if (!exist){
-        response.send({'error': 'the track does not exist'});
-    }
-
-    response.send(dal.removeComment(id, comment_id));
+    var track_id = request.params.id;
+    var comment_id  = request.body.comment_id;
+    dal.removeComment(track_id, comment_id, function(error, result){
+        if(result)
+            response.send(result);
+        else
+            response.send({'error':'An error has occurred',
+                'innerError':error});
+    });
 };
 
-exports.getTracksUploadedByUser = function(req, res) 
-{
+exports.getTracksUploadedByUser = function(req, res){
 	var userId = req.params.id;
 	if (userId)
 	{
@@ -67,8 +78,7 @@ exports.getTracksUploadedByUser = function(req, res)
 	}
 };
 
-exports.getTracksTagedWithPlace = function(req, res) 
-{
+exports.getTracksTagedWithPlace = function(req, res){
 	var placeId = req.params.id;
 	if (placeId)
 	{
@@ -82,8 +92,7 @@ exports.getTracksTagedWithPlace = function(req, res)
 	}
 };
 
-exports.PostTrack = function (req,res)
-{
+exports.PostTrack = function (req,res){
 	var track = req.body;
 	dal.addTrack(track, function(err, result)
 	{
@@ -92,10 +101,9 @@ exports.PostTrack = function (req,res)
 		else
 			res.send({'error':'An error has occurred'});
 	});
-}
+};
 
-exports.TagTrackWithPlace= function (req,res)
-{
+exports.TagTrackWithPlace= function (req,res){
 	var place = req.body;
 	var trackId = req.trackId;
 	dal.addPlaceToTrack(place, trackId, function(err, result)
@@ -105,10 +113,9 @@ exports.TagTrackWithPlace= function (req,res)
 		else
 			res.send({'error':'An error has occurred'});
 	});
-}
+};
 
-exports.SearchPlace = function(req, res) 
-{
+exports.SearchPlace = function(req, res){
 	var placeName = req.params.name;
 	if (placeName)
 	{

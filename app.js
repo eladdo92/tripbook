@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var place = require('./routes/place');
 var track = require('./routes/track');
 var http = require('http');
 var path = require('path');
@@ -38,15 +39,19 @@ app.get('/users', user.SearchUser);
 app.get('/tracks/place/:id', track.getTracksTagedWithPlace);
 app.get('/tracks/user/:id', track.getTracksUploadedByUser);
 app.get('/place', track.SearchPlace);
+app.get('/users/all', user.list);
+app.get('/places/all', place.list);
+app.get('/tracks/all', track.list);
 //UPDATE
 app.put('/user/friend/new', user.createFriendship);
 app.put('/user/place/follow', user.followPlace);
-app.put('/track/comment', track.comment);
-app.put('/track/like', track.like);
+app.put('/tracks/comment/:id', track.comment);
+app.put('/tracks/like/:id', track.like);
 app.put('/track/place/tag', track.TagTrackWithPlace);
 //DELETE
-app.delete('/track/comment/:id',track.removeComment);
-app.delete('/track/comment/:id',track.unlike);
+app.delete('/tracks/comment/:id', track.removeComment);
+app.delete('/tracks/like/:id', track.unlike);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

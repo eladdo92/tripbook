@@ -1,79 +1,185 @@
+
+var config = require('./../configuration');
+
+var db_name = config.database_name;
+var collection_name = config.users_collection;
 var user1 = {
     name:"Ben Hodeda",
     email:"benhodeda@gmail.com",
     password:"123456789"
 };
-
 var user2 = {
     name:"Elad Douenias",
     email:"eladdo92@gmail.com",
     password:"123456789"
 };
-
 var user3 = {
     name:"Oded Cagan",
     email:"odedcagan@gmail.com",
     password:"123456789"
 };
-
 var test_data = [user1, user2, user3];
 
-var common = require('common');
+var mongo;
 
-var collection_name = 'users';
-
-var db = common.db_connect('tripbook', collection_name, test_data);
-
-function getUser(id){
-    return common.getItem(db, collection_name, {'_id':new BSON.ObjectID(id)})
+if(process.env.VCAP_SERVICES){
+    var env = JSON.parse(process.env.VCAP_SERVICES);
+    mongo = env['mongodb-1.8'][0]['credentials'];
+}
+else{
+    mongo = {
+        "hostname" : config.database_host,
+        "port" : config.database_port,
+        "username" : "",
+        "password" : "",
+        "name" : "",
+        "db" : db_name
+    }
 }
 
-function hasPlace(user_id, place_id){
-    return common.isExist(db, collection_name, {"_id" : user_id, "places" : { $elemMatch : {"_id" : place_id}}});
-}
+var generate_mongo_url = function(obj){
+    obj.hostname = (obj.hostname || 'localhost');
+    obj.port = (obj.port || 27017);
+    obj.db = (obj.db || 'test');
 
-function isFriendExist(user_id, friend_id){
-    return common.isExist(db, collection_name, {'_id':new BSON.ObjectID(user_id), 'friends':{ $elemMatch : {"_id" : friend_id}}});
-}
-
-exports.isUserExist = function(user_id, name){
-    return common.isExist(db, collection_name, {'_id':new BSON.ObjectID(user_id), 'name':name});
-};
-
-exports.isUserExist = function(user_id){
-    return common.isExist(db, collection_name, {'_id':new BSON.ObjectID(user_id)});
-};
-
-exports.addFriend = function(user, friend){
-
-    if(isFriendExist(user._id, friend._id)){
-        return { status: true, data:  getUser(user._id)};
+    if(obj.username && obj.password){
+        return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
     }
-
-    return common.updateItem(db, collection_name, { '_id':new BSON.ObjectID(user._id)},
-        {$push :{'friends':{'_id':new BSON.ObjectID(friend._id), 'name':friend.name}}});
+    else {
+        return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }
 };
 
-exports.removeFriend = function(user_id, friend_id){
-    if (isFriendExist(user_id, friend_id)){
-        return common.updateItem(db, collection_name, {'_id':new BSON.ObjectID(user_id)}, {$pull:{"friends":{"_id":friend_id}}});
+var mongourl = generate_mongo_url(mongo);
+
+var db = null;
+
+var BSON = require('mongodb').BSONPure;
+
+require('mongodb').connect(mongourl, function(err, conn){
+    db = conn;
+    if(!err) {
+        console.log("Connected to '" + db_name + "' database");
+        db.collection(collection_name, {strict:true}, function(err, collection) {
+            if (err) {
+                console.log("The '" + collection_name + "' collection doesn't exist. Creating it with sample data...");
+                populateDB();
+            }
+        });
     }
-    return {status: true, data: getUser(user_id)};
+});
+
+var populateDB = function() {
+    test_data.forEach(function(item){
+        db.collection(collection_name, function(err, collection) {
+            collection.insert(item, {safe:true}, function(err, result) {
+                console.log("item1 result="+result);
+                console.log("err="+err);
+            });
+        });
+    });
 };
 
-exports.addPlace = function(user, place){
-    if(hasPlace(user._id, place._id)){
-        return { status: true, data:  getUser(user._id)};
-    }
-    return common.updateItem(db, collection_name, {'_id':new BSON.ObjectID(user._id)},
-        {$push:{'places':{'_id':new BSON.ObjectID(place._id), 'name':place.name}}});
+var connect_collection = function(callback){
+    require('mongodb').connect(mongourl, function(err, conn){
+        db = conn;
+        if(!err) {
+            db.collection(collection_name, function(error, collection){
+                if (error) callback(error, null);
+                else {
+                    callback(null, collection);
+                }
+            });
+        }
+    });
+};
+
+var update_callection = function(query, update, callback){
+    connect_collection(function(error, collection){
+        if (error) callback(error, null);
+        else {
+            collection.update(query, update, { safe : true }, function(error, result) {
+                if (error) callback(error, null);
+                else callback(null, result);
+            });
+        }
+    });
+};
+
+var getItem = function(query, callback){
+    connect_collection(function(error, collection){
+        if (error) callback(error, null);
+        else {
+            collection.findOne(query, function(error, result) {
+                if (error) callback(error, null);
+                else callback(null, result);
+            });
+        }
+    });
+};
+
+var get_user = function(id, callback){
+    getItem({'_id':new BSON.ObjectID(id)}, callback);
+};
+
+var addFriend = function(user, friend, orig_callback, callback){
+    update_callection({ '_id':new BSON.ObjectID(user._id)},  {$push :{'friends':{'_id':new BSON.ObjectID(friend._id), 'name':friend.name}}},
+        function(error, result){
+            if (error) orig_callback(error, null);
+            else callback(result);
+        });
+};
+
+var addPlace = function(user, place, orig_callback, callback){
+    update_callection({ '_id':new BSON.ObjectID(user._id)},  {$push :{'places':{'_id':new BSON.ObjectID(place._id), 'name':place.name}}},
+        function(error, result){
+            if (error) callback(error, null);
+            else callback(null, result);
+        });
+};
+
+exports.getUsers = function(callback) {
+    connect_collection(function(error, collection){
+        if (error) callback(error, null);
+        else {
+            collection.find().toArray(function(error, result) {
+                if (error) callback(error, null);
+                else callback(null, result);
+            });
+        }
+    });
+};
+
+exports.appendFriend = function(user, friend, callback){
+    addFriend(friend, user, callback, function(result_friend){
+        addFriend(user,friend, callback,function(result_user){
+            get_user(user._id, function(error, user_info){
+                user_info.status = result_user;
+                if (!error) get_user(friend._id, function(error, friend_info){
+                    friend_info.status = result_friend;
+                    console.log({user: user_info, friend: friend_info});
+                    if (!error) callback(null, {user: user_info, friend: friend_info});
+                });
+            });
+        })
+    });
+};
+
+exports.follow_place = function(user, place, callback){
+    addPlace(user, place, callback, function(error, result){
+        if (error) callback(error, null);
+        else get_user(user._id, function(error, info){
+            info.status = result;
+            if (!error) callback(null, info);
+        });
+    });
 };
 
 function userNameIndex() {
     db.ensureIndex(collection_name, {name: 1}, {background:true});
 }
 
-exports.getUserByName = function(userName) {
+exports.getUserByName = function(userName){
     userNameIndex();
     db.collection(collection_name, function(err, collection)
     {
@@ -87,8 +193,7 @@ exports.getUserByName = function(userName) {
 	});	
 };
 
-exports.addUser = function (user, callback)
-{	
+exports.addUser = function (user, callback){
 	db.collection('users', function(err, collection) 
 	{
 		collection.insert(user, {safe:true}, function(err, result) 
@@ -101,13 +206,11 @@ exports.addUser = function (user, callback)
 	});	
 };
 
-exports.getUser = getUser;
-
-function userPlacesIndex() {
+function userPlacesIndex(){
     db.ensureIndex(collection_name, {places: 1}, {background:true});
 }
 
-exports.usersThatFollow = function(placeId, callback) {
+exports.usersThatFollow = function(placeId, callback){
     userPlacesIndex();
     db.collection(collection_name, function(err, collection)
     {

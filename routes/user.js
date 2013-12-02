@@ -1,52 +1,42 @@
 var dal = require('../DAL/user');
 
 exports.followPlace = function(request, response){
-    //get the data from the request object
     var user = request.body.user;
     var place = request.body.place;
 
-    //validate data
-    var exist = dal.isUserExist(user._id) && require('../DAL/place').isPlaceExist(place._id);
-
-    if (!exist){
-        response.send({'error': 'the user or the place does not exist'});
-    }
-
-    response.send(dal.addPlace(user,place));
+    dal.follow_place(user, place, function(error, result){
+        if(result)
+            response.send(result);
+        else
+            response.send({'error':'An error has occurred',
+                'innerError':error});
+    });
 };
 
 exports.createFriendship = function(request, response){
-    //get the data from the request object
     var user = request.body.user;
     var friend = request.body.friend;
 
-    //validate data
-    var exist = dal.isUserExist(user._id, user.name) && dal.isUserExist(friend._id, friend.name);
-
-    if (!exist){
-        response.send({'error': 'one or more of the users does not exist in database'});
-    }
-
-    //add the user to friend's friends list
-    friendship = dal.addFriend(friend, user);
-
-    if (!friendship.status){
-        response.send({'error': friendship.data});
-    }
-
-    //add the new friend to user's friends list
-    var friendship = dal.addFriend(user, friend);
-
-    if (!friendship.status){
-        dal.removeFriend(friend, user); //rollback friendship
-        response.send({'error': friendship.data});
-    }
-
-    response.send(friendship);
+    dal.appendFriend(user, friend, function(error, result){
+        if(result)
+            response.send(result);
+        else
+            response.send({'error':'An error has occurred',
+                'innerError':error});
+    });
 };
 
-exports.SearchUser = function(req, res) 
-{
+exports.list = function(request, response){
+    dal.getUsers(function(error, result){
+        if(result)
+            response.send(result);
+        else
+            response.send({'error':'An error has occurred',
+                'innerError':error});
+    });
+};
+
+exports.SearchUser = function(req, res){
 	var userName = req.params.userName;
 	if (userName) 
 	{
@@ -60,8 +50,7 @@ exports.SearchUser = function(req, res)
 	}
 };
 
-exports.Register= function (req,res)
-{
+exports.Register= function (req,res){
 	var user = req.body;
 	dal.addUser(user, function(err, result) 
 	{
@@ -70,9 +59,9 @@ exports.Register= function (req,res)
 		else
 			res.send({'error':'An error has occurred'});
 	});
-}
+};
 
-exports.Feed = function(req, res) {
+exports.Feed = function(req, res){
     var userid = req.params.id;
     var daysAgo = req.params.daysAgo || 1;
 
