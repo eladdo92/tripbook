@@ -79,7 +79,10 @@ exports.getTracksUploadedByUser = function(req, res){
 };
 
 exports.getTracksTagedWithPlace = function(req, res){
-	var placeId = req.params.id;
+	var url = require('url');
+    	var url_parts = url.parse(req.url, true);
+    	var query = url_parts.query;
+    	var placeId = query.id;
 	if (placeId)
 	{
 		dal.getPlaceTracks(placeId, function(err, result)
