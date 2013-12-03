@@ -1,4 +1,3 @@
-
 var config = require('./../configuration');
 
 var db_name = config.database_name;
@@ -179,11 +178,11 @@ function userNameIndex() {
     db.ensureIndex(collection_name, {name: 1}, {background:true});
 }
 
-exports.getUserByName = function(userName){
-    userNameIndex();
+exports.getUserByName = function(userName, callback){
+    //userNameIndex();
     db.collection(collection_name, function(err, collection)
     {
-		collection.findOne({'name':userName}).toArray(function(err, user) 
+		collection.findOne({'name':userName}, function(err, user) 
 		{
 			if (err)
 				callback(err, null);
