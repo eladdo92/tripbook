@@ -144,7 +144,7 @@ exports.tracksForFeed = function(places, friends, daysAgo, callback){
 };
 
 exports.getUserTracks = function(userId, callback){
-    tracksUsersIndex();
+    //tracksUsersIndex();
 	db.collection(collection_name, function(err, collection)
 	{
 		collection.find({'user.id':parseInt(userId)}).toArray(function(err, tracks)
