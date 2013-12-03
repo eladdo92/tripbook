@@ -37,7 +37,10 @@ exports.list = function(request, response){
 };
 
 exports.SearchUser = function(req, res){
-	var userName = req.params.userName;
+    	var url = require('url');
+    	var url_parts = url.parse(req.url, true);
+    	var query = url_parts.query;
+    	var userName = query.userName;
 	if (userName) 
 	{
 		dal.getUserByName(userName, function(err, result)
