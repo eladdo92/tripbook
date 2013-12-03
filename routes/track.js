@@ -65,7 +65,10 @@ exports.removeComment = function(request, response){
 };
 
 exports.getTracksUploadedByUser = function(req, res){
-	var userId = req.params.id;
+	var url = require('url');
+    	var url_parts = url.parse(req.url, true);
+    	var query = url_parts.query;
+    	var userId = query.id;
 	if (userId)
 	{
 		dal.getUserTracks(userId, function(err, result)
