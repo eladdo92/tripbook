@@ -105,7 +105,7 @@ exports.PostTrack = function (req,res){
 
 exports.TagTrackWithPlace= function (req,res){
 	var place = req.body;
-	var trackId = req.trackId;
+	var trackId = req.params.id;
 	dal.addPlaceToTrack(place, trackId, function(err, result)
 	{
 		if(result)

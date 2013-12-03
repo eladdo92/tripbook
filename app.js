@@ -42,12 +42,15 @@ app.get('/place', track.SearchPlace);
 app.get('/users/all', user.list);
 app.get('/places/all', place.list);
 app.get('/tracks/all', track.list);
+app.get('/feed/:id', user.Feed);
+app.get('/followers/:id', place.followers);
+
 //UPDATE
 app.put('/user/friend/new', user.createFriendship);
 app.put('/user/place/follow', user.followPlace);
 app.put('/tracks/comment/:id', track.comment);
 app.put('/tracks/like/:id', track.like);
-app.put('/track/place/tag', track.TagTrackWithPlace);
+app.put('/track/place/tag/:id', track.TagTrackWithPlace);
 //DELETE
 app.delete('/tracks/comment/:id', track.removeComment);
 app.delete('/tracks/like/:id', track.unlike);

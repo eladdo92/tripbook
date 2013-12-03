@@ -194,16 +194,15 @@ exports.getUserByName = function(userName){
 };
 
 exports.addUser = function (user, callback){
-	db.collection('users', function(err, collection) 
-	{
-		collection.insert(user, {safe:true}, function(err, result) 
-		{
-			if (err)			
-				callback(err, null);			
-			else
-				callback(null, result[0]);
-		});
-	});	
+    connect_collection(function(error, collection){
+        if (error) callback(error, null);
+        else {
+            collection.insert(user, {safe:true}, function(error, result) {
+                if (error) callback(error, null);
+                else callback(null, result);
+            });
+        }
+    });
 };
 
 function userPlacesIndex(){
