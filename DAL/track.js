@@ -196,35 +196,6 @@ exports.addPlaceToTrack= function (place, trackId, callback){
 	});	
 };
 
-//not sure since many tracks can have the same place..
-exports.getPlaceByName = function(placeName, callback){
-	db.collection('tracks', function(err, collection) 
-	{
-		collection.findOne({'places':{$elemMatch:{'name':placeName}}}, function(err, track)
-		{			
-			if (err)
-				callback(err, null);
-			else
-			{
-				var index = -1;
-				for(var i = 0, len = track.places.length; i < len; i++) 
-				{
-					if (track.places[i].name === placeName) 
-					{
-						index = i;
-						break;
-					}
-				}
-			
-
-				var place = track.places[index];
-
-				callback(null, place);
-            }
-		});
-	});
-};
-
 exports.getTracks = function(callback) {
     connect_collection(function(error, collection){
         if (error) callback(error, null);
