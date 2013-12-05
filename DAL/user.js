@@ -179,7 +179,7 @@ function userNameIndex() {
 }
 
 exports.getUserByName = function(userName, callback){
-    //userNameIndex();
+    userNameIndex();
     db.collection(collection_name, function(err, collection)
     {
 		collection.findOne({'name':userName}, function(err, user) 
