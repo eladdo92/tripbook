@@ -118,7 +118,7 @@ exports.getPlaceByName = function(placeName, callback)
 			if (err)
 				callback(err, null);
 			else
-				callback(null, place;);
+				callback(null, place);
 		});
 	});	
 };
