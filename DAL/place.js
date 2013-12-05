@@ -1,4 +1,3 @@
-
 var config = require('./../configuration');
 
 var db_name = config.database_name;
@@ -108,4 +107,18 @@ exports.followers = function(placeId, callback){
         if(err) callback(err, null);
         else callback(null, result.toArray());
     });
+};
+
+exports.getPlaceByName = function(placeName, callback) 
+{
+	db.collection('tracks', function(err, collection)
+	{
+		collection.findOne({'name':placeName}).toArray(function(err, place) 
+		{
+			if (err)
+				callback(err, null);
+			else
+				callback(null, place;);
+		});
+	});	
 };
