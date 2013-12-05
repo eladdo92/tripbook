@@ -111,9 +111,9 @@ exports.followers = function(placeId, callback){
 
 exports.getPlaceByName = function(placeName, callback) 
 {
-	db.collection('tracks', function(err, collection)
+	db.collection(collection_name, function(err, collection)
 	{
-		collection.findOne({'name':placeName}).toArray(function(err, place) 
+		collection.findOne({'name':placeName}, function(err, place) 
 		{
 			if (err)
 				callback(err, null);
