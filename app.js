@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -38,7 +37,7 @@ app.post('/tracks/new', track.PostTrack);
 app.get('/users', user.SearchUser);
 app.get('/tracks/place/:id', track.getTracksTagedWithPlace);
 app.get('/tracks/user/:id', track.getTracksUploadedByUser);
-app.get('/place', track.SearchPlace);
+app.get('/place', place.SearchPlace);
 app.get('/users/all', user.list);
 app.get('/places/all', place.list);
 app.get('/tracks/all', track.list);
