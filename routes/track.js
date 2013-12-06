@@ -120,17 +120,3 @@ exports.TagTrackWithPlace= function (req,res){
 			res.send({'error':'An error has occurred'});
 	});
 };
-
-exports.SearchPlace = function(req, res){
-	var placeName = req.params.name;
-	if (placeName)
-	{
-		dal.getPlaceByName(placeName, function(err, result)
-		{
-			if(result)
-				res.send(result);
-			else
-				res.send({'error':'An error has occurred'});
-		});
-	}
-};

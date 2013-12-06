@@ -19,3 +19,23 @@ exports.followers = function(req, res) {
             res.send({'error':'An error has occurred'});
     });
 };
+
+
+exports.SearchPlace = function(req, res) 
+{
+    var url = require('url');
+    var url_parts = url.parse(req.url, true);
+    var query = url_parts.query;
+    var placeName = query.placeName;
+	if (placeName)
+	{
+		dal.getPlaceByName(placeName, function(err, result)
+		{
+			if(result)
+				res.send(result);
+			else
+				res.send({'error':'An error has occurred'});
+		});
+	}
+};
+
