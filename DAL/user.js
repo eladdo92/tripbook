@@ -121,6 +121,8 @@ var get_user = function(id, callback){
     getItem({'_id':new BSON.ObjectID(id)}, callback);
 };
 
+exports.getUser = get_user;
+
 var addFriend = function(user, friend, orig_callback, callback){
     update_callection({ '_id':new BSON.ObjectID(user._id)},  {$push :{'friends':{'_id':new BSON.ObjectID(friend._id), 'name':friend.name}}},
         function(error, result){

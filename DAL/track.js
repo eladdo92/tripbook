@@ -109,7 +109,7 @@ function objectIdWithTimestamp(timestamp){
     // Convert date object to hex seconds since Unix epoch
     var hexSeconds = Math.floor(timestamp/1000).toString(16);
 
-    return require('mongodb').ObjectId(hexSeconds + "0000000000000000");
+    return new BSON.ObjectID(hexSeconds + "0000000000000000");
 }
 
 function daysAgoDate(daysAgo){
@@ -122,29 +122,30 @@ function tracksUsersIndex(){
     db.ensureIndex(collection_name, {user: 1}, {background:true});
 }
 
-exports.tracksForFeed = function(places, friends, daysAgo, callback){
-    db.collection('tracks', function(err, collection){
-            if (err) return;
-
-            collection.find(
-                {
-                    _id: { $gt: objectIdWithTimestamp(daysAgoDate(daysAgo)) },
-                    $or: [
-                        { user: { id: { $in: friends } } },
-                        { places: { id: { $in: places } } }
-                    ]
-                },
-                function(err, result) {
-                    if (err) callback(err, null);
-                    else callback(null, result.toArray());
-                });
-
+exports.tracksForFeed = function(placesIds, friendsIds, daysAgo, callback){
+    connect_collection(function(err, collection) {
+        if (err) {
+            callback(err);
+            return;
         }
-    );
+        collection.find(
+            {
+                _id: { $gt: objectIdWithTimestamp(daysAgoDate(daysAgo)) },
+                '$or': [
+                    {'user._id': {'$in': friendsIds }},
+                    {'places': { '$elemMatch': { '_id': {'$in': placesIds} } } }
+                ]
+            }).toArray(
+            function(err, result) {
+                if (err) callback(err, null);
+                else callback(null, result);
+            });
+    });
+
 };
 
 exports.getUserTracks = function(userId, callback){
-    //tracksUsersIndex();
+    tracksUsersIndex();
 	db.collection(collection_name, function(err, collection)
 	{
 		collection.find({'user.id':parseInt(userId)}).toArray(function(err, tracks)

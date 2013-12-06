@@ -64,29 +64,42 @@ exports.Register= function (req,res){
 	});
 };
 
-exports.Feed = function(req, res){
-    var userid = req.params.id;
-    var daysAgo = req.params.daysAgo || 1;
+function getPlacesAndFriendsIdsOfUser(error, user, callback) {
+    if (error) {
+        callback(error);
+        return;
+    }
 
-    var user = dal.getUser(userid);
-
-    var places = user.places.toArray();
-    var friends = user.friends.toArray();
-
+    var places = user.places || [];
+    var friends = user.friends || [];
     var placesIds = [];
-    places.forEach(function(item){
-        placesIds.push(item.id);
+    places.forEach(function(place){
+        placesIds.push(place._id);
     });
-
     var friendsIds = [];
-    friends.forEach(function(item){
-        friendsIds.push(item.id);
+    friends.forEach(function(friend){
+        friendsIds.push(friend._id.toString());
     });
 
-    dal.tracksForFeed(placesIds,friendsIds, daysAgo, function(err, result) {
-        if(result)
-            res.send(result);
-        else
-            res.send({'error':'An error has occurred'});
+    callback(null, placesIds, friendsIds);
+}
+
+exports.Feed = function(req, res){
+    var userId = req.params.id;
+    var daysAgo = req.params.daysAgo || 7;
+
+    dal.getUser(userId, function(error, user) {
+        getPlacesAndFriendsIdsOfUser(error, user, function(error, placesIds, friendsIds) {
+            if(error) res.send({'error':'An error has occurred'});
+            else {
+                require('../DAL/track').tracksForFeed(placesIds,friendsIds, daysAgo, function(err, result) {
+                    if(result) {
+                        res.send(result);
+                    }
+                    else
+                        res.send({'error':'An error has occurred'});
+                });
+            }
+        })
     });
 };
