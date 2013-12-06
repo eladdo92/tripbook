@@ -166,7 +166,7 @@ exports.getUserTracks = function(userId, callback){
     tracksUsersIndex();
 	db.collection(collection_name, function(err, collection)
 	{
-		collection.find({'user.id':parseInt(userId)}).toArray(function(err, tracks)
+		collection.find({'user._id':userId}).toArray(function(err, tracks)
 		{
 			if (err)
 				callback(err, null);
@@ -192,7 +192,7 @@ exports.addTrack= function (track, callback){
 exports.getPlaceTracks = function(placeId, callback){
 	db.collection('tracks', function(err, collection) 
 	{
-		collection.find({'places':{$elemMatch:{'id':placeId}}}).toArray(function(err, tracks) 
+		collection.find({'places':{$elemMatch:{'_id':placeId}}}).toArray(function(err, tracks)
 		{
 			if (err)
 				callback(err, null);
@@ -205,7 +205,7 @@ exports.getPlaceTracks = function(placeId, callback){
 exports.addPlaceToTrack= function (place, trackId, callback){
 	db.collection('tracks', function(err, collection) 
 	{
-		collection.update({'trackId':trackId}, {$push:{'places': place}}, function(err, result) 
+		collection.update({'_id':new require('mongodb').ObjectID(trackId)}, {$push:{'places': place}}, function(err, result)
 		{
 			if (err)
 				callback(err, null);
