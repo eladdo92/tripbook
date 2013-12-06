@@ -177,7 +177,9 @@ exports.follow_place = function(user, place, callback){
 };
 
 function userNameIndex() {
-    db.ensureIndex(collection_name, {name: 1}, {background:true});
+    db.ensureIndex(collection_name, {name: 1}, {background:true}, function(err){
+        if(err) console.log(err);
+    });
 }
 
 exports.getUserByName = function(userName, callback){
@@ -207,16 +209,21 @@ exports.addUser = function (user, callback){
 };
 
 function userPlacesIndex(){
-    db.ensureIndex(collection_name, {places: 1}, {background:true});
+    db.ensureIndex(collection_name, {places: 1}, {background:true}, function(err){
+        if(err) console.log(err);
+    });
 }
 
 exports.usersThatFollow = function(placeId, callback){
     userPlacesIndex();
-    db.collection(collection_name, function(err, collection)
+    connect_collection(function(err, collection)
     {
-        collection.find({ 'places.id': placeId }, function(err, result) {
+        if (err) callback(err, null);
+
+
+        collection.find({'places': { '$elemMatch': { '_id': new BSON.ObjectID(placeId) } } }).toArray( function(err, result) {
             if(err) callback(err, null);
-            else callback(null, result.toArray());
+            else callback(null, result);
         });
     });
 };

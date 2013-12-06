@@ -119,7 +119,9 @@ function daysAgoDate(daysAgo){
 }
 
 function tracksUsersIndex(){
-    db.ensureIndex(collection_name, {user: 1}, {background:true});
+    db.ensureIndex(collection_name, {user: 1}, {background:true}, function(err){
+        if(err) console.log(err);
+    });
 }
 
 exports.tracksForFeed = function(placesIds, friendsIds, daysAgo, callback){

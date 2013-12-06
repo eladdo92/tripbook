@@ -105,7 +105,7 @@ exports.getPlaces = function(callback){
 exports.followers = function(placeId, callback){
     require('./user').usersThatFollow(placeId, function(err, result) {
         if(err) callback(err, null);
-        else callback(null, result.toArray());
+        else callback(null, result);
     });
 };
 
