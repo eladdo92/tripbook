@@ -29,6 +29,6 @@ $(document).ready(function(){
             type: 'PUT',
             url: 'user/place/follow',
             data: data
-        });
+        }).always(function(res) {console.log(res);});
     });
 });

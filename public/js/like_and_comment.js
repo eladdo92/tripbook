@@ -1,6 +1,9 @@
-$(document).ready(function(){
-    var tarck_likes = {};
-    var tracks = [];
+var tarck_likes ;
+var tracks;
+function create() {
+    $('#tracks').empty();
+    tarck_likes = {};
+    tracks = [];
     $.get('tracks/all', function(data){
         data.forEach(function(item){
             tarck_likes[item._id] = item.likes;
@@ -25,7 +28,7 @@ $(document).ready(function(){
             var like = $('<button />').text('Like!').addClass('like');
             if (item.likes){
                 likes = item.likes.length;
-                if($.inArray(item.user._id,item.likes) != -1)
+                if($.inArray($('#users').find(':selected').val(),item.likes) != -1)
                     like = $('<button />').text('Unlike!').addClass('unlike');
                 else
                     like = $('<button />').text('Like!').addClass('like');
@@ -37,25 +40,34 @@ $(document).ready(function(){
             $('#tracks').append(article);
         });
     });
+}
 
+$(document).ready(function(){
+    create();
     $('#tracks').on('click', '.like', function(){
         var track_id = $(this).parent().attr('id');
         var user_id = {user_id: $('#users').find(':selected').val()};
         $.ajax({
             type: 'PUT',
             url: 'tracks/like/' + track_id,
-            data: user_id
+            data: user_id,
+            success: function(res) {
+                console.log(res);
+                create();
+            }
         });
-        location.reload();
     }).on('click', '.unlike', function(){
         var track_id = $(this).parent().attr('id');
         var user_id = {user_id: $('#users').find(':selected').val()};
         $.ajax({
             type: 'DELETE',
             url: 'tracks/like/' + track_id,
-            data: user_id
+            data: user_id,
+            success: function(res) {
+                console.log(res);
+                create();
+            }
         });
-        location.reload();
     }).on('click', '.comment', function(){
         var track_id = $(this).parent().attr('id');
         var comment = {};
@@ -64,13 +76,15 @@ $(document).ready(function(){
         var user = $('#users').find(':selected');
         comment.user._id = user.val();
         comment.user.name = user.text();
-        console.log(comment);
         $.ajax({
             type: 'PUT',
             url: 'tracks/comment/' + track_id,
-            data: comment
+            data: comment,
+            success: function(res) {
+                console.log(res);
+                create();
+            }
         });
-        location.reload();
     }).on('click', '.remove', function(){
         var track_id = $(this).parent().parent().parent().attr('id');
         var comment_id = $(this).parent().attr('id');
@@ -78,9 +92,12 @@ $(document).ready(function(){
         $.ajax({
             type: 'DELETE',
             url: 'tracks/comment/' + track_id,
-            data: comment
+            data: comment,
+            success: function(res) {
+                console.log(res);
+                create();
+            }
         });
-        location.reload();
     });
 
     $('#users').on('change', function(){

@@ -158,7 +158,6 @@ exports.appendFriend = function(user, friend, callback){
                 user_info.status = result_user;
                 if (!error) get_user(friend._id, function(error, friend_info){
                     friend_info.status = result_friend;
-                    console.log({user: user_info, friend: friend_info});
                     if (!error) callback(null, {user: user_info, friend: friend_info});
                 });
             });

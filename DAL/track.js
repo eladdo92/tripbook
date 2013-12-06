@@ -124,6 +124,22 @@ function tracksUsersIndex(){
     });
 }
 
+var getItem = function(query, callback){
+    connect_collection(function(error, collection){
+        if (error) callback(error, null);
+        else {
+            collection.findOne(query, function(error, result) {
+                if (error) callback(error, null);
+                else callback(null, result);
+            });
+        }
+    });
+};
+
+var get_track = function(id, callback){
+    getItem({'_id':new BSON.ObjectID(id)}, callback);
+};
+
 exports.tracksForFeed = function(placesIds, friendsIds, daysAgo, callback){
     connect_collection(function(err, collection) {
         if (err) {
@@ -215,7 +231,7 @@ exports.addLike = function(track_id, user_id, callback){
     update_callection({ '_id':new BSON.ObjectID(track_id)},  {$push :{"likes" :new BSON.ObjectID(user_id)}},
         function(error, result){
             if (error) callback(error, null);
-            else callback(null, result);
+            else get_track(track_id, callback);
         });
 };
 
@@ -224,7 +240,7 @@ exports.addComment = function(track_id, comment, callback){
     update_callection({ '_id':new BSON.ObjectID(track_id)},  {$push :{"comments" : comment}},
         function(error, result){
             if (error) callback(error, null);
-            else callback(null, result);
+            else get_track(track_id, callback);
         });
 };
 
@@ -232,7 +248,7 @@ exports.removeLike = function(track_id, user_id, callback){
     update_callection({ '_id':new BSON.ObjectID(track_id)}, {$pull :{"likes" :new BSON.ObjectID(user_id)}},
         function(error, result){
             if (error) callback(error, null);
-            else callback(null, result);
+            else get_track(track_id, callback);
         });
 };
 
@@ -240,6 +256,6 @@ exports.removeComment = function(track_id, comment_id, callback){
     update_callection({ '_id':new BSON.ObjectID(track_id)},  {$pull:{"comments":{"_id":new BSON.ObjectID(comment_id)}}},
         function(error, result){
             if (error) callback(error, null);
-            else callback(null, result);
+            else get_track(track_id, callback);
         });
 };

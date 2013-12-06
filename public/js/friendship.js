@@ -24,6 +24,6 @@ $(document).ready(function()
             type: 'PUT',
             url: 'user/friend/new',
             data: data
-        });
+        }).always(function(res) {console.log(res);});
     });
 });
