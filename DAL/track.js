@@ -7,7 +7,7 @@ var track = {
     "user": { }
 };
 
-require('./user').getUsers(function(error, list){
+require('./user').getUsers(function (error, list) {
     if (error) console.log(error);
     else if (list.length > 0) {
         track.user._id = list[0]._id;
@@ -18,27 +18,27 @@ var test_data = [track];
 
 var mongo;
 
-if(process.env.VCAP_SERVICES){
+if (process.env.VCAP_SERVICES) {
     var env = JSON.parse(process.env.VCAP_SERVICES);
     mongo = env['mongodb-1.8'][0]['credentials'];
 }
-else{
+else {
     mongo = {
-        "hostname" : config.database_host,
-        "port" : config.database_port,
-        "username" : "",
-        "password" : "",
-        "name" : "",
-        "db" : db_name
+        "hostname": config.database_host,
+        "port": config.database_port,
+        "username": "",
+        "password": "",
+        "name": "",
+        "db": db_name
     }
 }
 
-var generate_mongo_url = function(obj){
+var generate_mongo_url = function (obj) {
     obj.hostname = (obj.hostname || 'localhost');
     obj.port = (obj.port || 27017);
     obj.db = (obj.db || 'test');
 
-    if(obj.username && obj.password){
+    if (obj.username && obj.password) {
         return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
     }
     else {
@@ -52,11 +52,11 @@ var db = null;
 
 var BSON = require('mongodb').BSONPure;
 
-require('mongodb').connect(mongourl, function(err, conn){
+require('mongodb').connect(mongourl, function (err, conn) {
     db = conn;
-    if(!err) {
+    if (!err) {
         console.log("Connected to '" + db_name + "' database");
-        db.collection(collection_name, {strict:true}, function(err, collection) {
+        db.collection(collection_name, {strict: true}, function (err, collection) {
             if (err) {
                 console.log("The '" + collection_name + "' collection doesn't exist. Creating it with sample data...");
                 populateDB();
@@ -65,22 +65,22 @@ require('mongodb').connect(mongourl, function(err, conn){
     }
 });
 
-var populateDB = function() {
-    test_data.forEach(function(item){
-        db.collection(collection_name, function(err, collection) {
-            collection.insert(item, {safe:true}, function(err, result) {
-                console.log("item1 result="+result);
-                console.log("err="+err);
+var populateDB = function () {
+    test_data.forEach(function (item) {
+        db.collection(collection_name, function (err, collection) {
+            collection.insert(item, {safe: true}, function (err, result) {
+                console.log("item1 result=" + result);
+                console.log("err=" + err);
             });
         });
     });
 };
 
-var connect_collection = function(callback){
-    require('mongodb').connect(mongourl, function(err, conn){
+var connect_collection = function (callback) {
+    require('mongodb').connect(mongourl, function (err, conn) {
         db = conn;
-        if(!err) {
-            db.collection(collection_name, function(error, collection){
+        if (!err) {
+            db.collection(collection_name, function (error, collection) {
                 if (error) callback(error, null);
                 else callback(null, collection);
             });
@@ -88,11 +88,11 @@ var connect_collection = function(callback){
     });
 };
 
-var update_callection = function(query, update, callback){
-    connect_collection(function(error, collection){
+var update_callection = function (query, update, callback) {
+    connect_collection(function (error, collection) {
         if (error) callback(error, null);
         else {
-            collection.update(query, update, { safe : true }, function(error, result) {
+            collection.update(query, update, { safe: true }, function (error, result) {
                 if (error) callback(error, null);
                 else callback(null, result);
             });
@@ -100,35 +100,35 @@ var update_callection = function(query, update, callback){
     });
 };
 
-function objectIdWithTimestamp(timestamp){
+function objectIdWithTimestamp(timestamp) {
     // Convert string date to Date object (otherwise assume timestamp is a date)
     if (typeof(timestamp) == 'string') {
         timestamp = new Date(timestamp);
     }
 
     // Convert date object to hex seconds since Unix epoch
-    var hexSeconds = Math.floor(timestamp/1000).toString(16);
+    var hexSeconds = Math.floor(timestamp / 1000).toString(16);
 
     return new BSON.ObjectID(hexSeconds + "0000000000000000");
 }
 
-function daysAgoDate(daysAgo){
+function daysAgoDate(daysAgo) {
     var date = new Date(); //now
     date.setDate(date.getDate() - daysAgo);
     return date;
 }
 
-function tracksUsersIndex(){
-    db.ensureIndex(collection_name, {user: 1}, {background:true}, function(err){
-        if(err) console.log(err);
+function tracksUsersIndex() {
+    db.ensureIndex(collection_name, {user: 1}, {background: true}, function (err) {
+        if (err) console.log(err);
     });
 }
 
-var getItem = function(query, callback){
-    connect_collection(function(error, collection){
+var getItem = function (query, callback) {
+    connect_collection(function (error, collection) {
         if (error) callback(error, null);
         else {
-            collection.findOne(query, function(error, result) {
+            collection.findOne(query, function (error, result) {
                 if (error) callback(error, null);
                 else callback(null, result);
             });
@@ -136,12 +136,12 @@ var getItem = function(query, callback){
     });
 };
 
-var get_track = function(id, callback){
-    getItem({'_id':new BSON.ObjectID(id)}, callback);
+var get_track = function (id, callback) {
+    getItem({'_id': new BSON.ObjectID(id)}, callback);
 };
 
-exports.tracksForFeed = function(placesIds, friendsIds, daysAgo, callback){
-    connect_collection(function(err, collection) {
+exports.tracksForFeed = function (placesIds, friendsIds, daysAgo, callback) {
+    connect_collection(function (err, collection) {
         if (err) {
             callback(err);
             return;
@@ -154,7 +154,7 @@ exports.tracksForFeed = function(placesIds, friendsIds, daysAgo, callback){
                     {'places': { '$elemMatch': { '_id': {'$in': placesIds} } } }
                 ]
             }).toArray(
-            function(err, result) {
+            function (err, result) {
                 if (err) callback(err, null);
                 else callback(null, result);
             });
@@ -162,64 +162,56 @@ exports.tracksForFeed = function(placesIds, friendsIds, daysAgo, callback){
 
 };
 
-exports.getUserTracks = function(userId, callback){
+exports.getUserTracks = function (userId, callback) {
     tracksUsersIndex();
-	db.collection(collection_name, function(err, collection)
-	{
-		collection.find({'user._id':userId}).toArray(function(err, tracks)
-		{
-			if (err)
-				callback(err, null);
-			else			
-				callback(null, tracks);
-		});
-	});	
+    db.collection(collection_name, function (err, collection) {
+        collection.find({'user._id': userId}).toArray(function (err, tracks) {
+            if (err)
+                callback(err, null);
+            else
+                callback(null, tracks);
+        });
+    });
 };
 
-exports.addTrack= function (track, callback){
-	db.collection('tracks', function(err, collection) 
-	{
-		collection.insert(track, {safe:true}, function(err, result) 
-		{
-			if (err)
-				callback(err, null);
-			else
-				callback(null, result[0]);
-		});
-	});	
+exports.addTrack = function (track, callback) {
+    db.collection('tracks', function (err, collection) {
+        collection.insert(track, {safe: true}, function (err, result) {
+            if (err)
+                callback(err, null);
+            else
+                callback(null, result[0]);
+        });
+    });
 };
 
-exports.getPlaceTracks = function(placeId, callback){
-	db.collection('tracks', function(err, collection) 
-	{
-		collection.find({'places':{$elemMatch:{'_id':placeId}}}).toArray(function(err, tracks)
-		{
-			if (err)
-				callback(err, null);
-			else
-				callback(null, tracks);
-		});
-	});
+exports.getPlaceTracks = function (placeId, callback) {
+    db.collection('tracks', function (err, collection) {
+        collection.find({'places': {$elemMatch: {'_id': placeId}}}).toArray(function (err, tracks) {
+            if (err)
+                callback(err, null);
+            else
+                callback(null, tracks);
+        });
+    });
 };
 
-exports.addPlaceToTrack= function (place, trackId, callback){
-	db.collection('tracks', function(err, collection) 
-	{
-		collection.update({'_id':new require('mongodb').ObjectID(trackId)}, {$push:{'places': place}}, function(err, result)
-		{
-			if (err)
-				callback(err, null);
-			else
-				callback(null, result[0]);
-		});
-	});	
+exports.addPlaceToTrack = function (place, trackId, callback) {
+    db.collection('tracks', function (err, collection) {
+        collection.update({'_id': BSON.ObjectID(trackId)}, {$push: {'places': place}}, function (err, result) {
+            if (err)
+                callback(err, null);
+            else
+                callback(null, result[0]);
+        });
+    });
 };
 
-exports.getTracks = function(callback) {
-    connect_collection(function(error, collection){
+exports.getTracks = function (callback) {
+    connect_collection(function (error, collection) {
         if (error) callback(error, null);
         else {
-            collection.find().toArray(function(error, result) {
+            collection.find().toArray(function (error, result) {
                 if (error) callback(error, null);
                 else callback(null, result);
             });
@@ -227,34 +219,34 @@ exports.getTracks = function(callback) {
     });
 };
 
-exports.addLike = function(track_id, user_id, callback){
-    update_callection({ '_id':new BSON.ObjectID(track_id)},  {$push :{"likes" :new BSON.ObjectID(user_id)}},
-        function(error, result){
+exports.addLike = function (track_id, user_id, callback) {
+    update_callection({ '_id': new BSON.ObjectID(track_id)}, {$push: {"likes": new BSON.ObjectID(user_id)}},
+        function (error) {
             if (error) callback(error, null);
             else get_track(track_id, callback);
         });
 };
 
-exports.addComment = function(track_id, comment, callback){
+exports.addComment = function (track_id, comment, callback) {
     comment._id = new BSON.ObjectID();
-    update_callection({ '_id':new BSON.ObjectID(track_id)},  {$push :{"comments" : comment}},
-        function(error, result){
+    update_callection({ '_id': new BSON.ObjectID(track_id)}, {$push: {"comments": comment}},
+        function (error) {
             if (error) callback(error, null);
             else get_track(track_id, callback);
         });
 };
 
-exports.removeLike = function(track_id, user_id, callback){
-    update_callection({ '_id':new BSON.ObjectID(track_id)}, {$pull :{"likes" :new BSON.ObjectID(user_id)}},
-        function(error, result){
+exports.removeLike = function (track_id, user_id, callback) {
+    update_callection({ '_id': new BSON.ObjectID(track_id)}, {$pull: {"likes": new BSON.ObjectID(user_id)}},
+        function (error) {
             if (error) callback(error, null);
             else get_track(track_id, callback);
         });
 };
 
-exports.removeComment = function(track_id, comment_id, callback){
-    update_callection({ '_id':new BSON.ObjectID(track_id)},  {$pull:{"comments":{"_id":new BSON.ObjectID(comment_id)}}},
-        function(error, result){
+exports.removeComment = function (track_id, comment_id, callback) {
+    update_callection({ '_id': new BSON.ObjectID(track_id)}, {$pull: {"comments": {"_id": new BSON.ObjectID(comment_id)}}},
+        function (error) {
             if (error) callback(error, null);
             else get_track(track_id, callback);
         });

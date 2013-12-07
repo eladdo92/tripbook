@@ -1,3 +1,5 @@
+exports.application_port = 'tripbook';
+
 exports.database_name = 'tripbook';
 exports.database_host = 'localhost';
 exports.database_port = 27017;
