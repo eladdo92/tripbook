@@ -28,9 +28,10 @@ $(document).ready(function () {
         $.ajax({
             type: 'PUT',
             url: 'user/place/follow',
-            data: data
-        }).always(function (res) {
+            data: data,
+            success: function (res) {
                 console.log(res);
-            });
+            }
+        });
     });
 });

@@ -22,9 +22,10 @@ $(document).ready(function () {
         $.ajax({
             type: 'PUT',
             url: 'user/friend/new',
-            data: data
-        }).always(function (res) {
+            data: data,
+            success: function (res) {
                 console.log(res);
-            });
+            }
+        });
     });
 });
