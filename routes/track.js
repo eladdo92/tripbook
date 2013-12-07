@@ -65,10 +65,7 @@ exports.removeComment = function(request, response){
 };
 
 exports.getTracksUploadedByUser = function(req, res){
-	var url = require('url');
-    	var url_parts = url.parse(req.url, true);
-    	var query = url_parts.query;
-    	var userId = query.id;
+	var userId = req.params.id;
 	if (userId)
 	{
 		dal.getUserTracks(userId, function(err, result)
@@ -82,10 +79,7 @@ exports.getTracksUploadedByUser = function(req, res){
 };
 
 exports.getTracksTagedWithPlace = function(req, res){
-	var url = require('url');
-    	var url_parts = url.parse(req.url, true);
-    	var query = url_parts.query;
-    	var placeId = query.id;
+    var placeId = req.params.id;
 	if (placeId)
 	{
 		dal.getPlaceTracks(placeId, function(err, result)
