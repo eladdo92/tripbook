@@ -83,7 +83,7 @@ function getPlacesAndFriendsIdsOfUser(error, user, callback) {
 
 exports.Feed = function (req, res) {
     var userId = req.params.id;
-    var daysAgo = req.params.daysAgo || 7;
+    var daysAgo = req.params.daysAgo || 9999;
 
     dal.getUser(userId, function (error, user) {
         getPlacesAndFriendsIdsOfUser(error, user, function (error, placesIds, friendsIds) {

@@ -1,4 +1,4 @@
-exports.application_port = 80;
+exports.application_port = 801;
 
 exports.database_name = 'tripbook';
 exports.database_host = 'localhost';
