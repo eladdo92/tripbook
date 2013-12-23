@@ -143,7 +143,7 @@ exports.getUsers = function (callback) {
     connect_collection(function (error, collection) {
         if (error) callback(error, null);
         else {
-            collection.find().toArray(function (error, result) {
+            collection.find().sort({'name' : 1}).toArray(function (error, result) {
                 if (error) callback(error, null);
                 else callback(null, result);
             });
@@ -220,6 +220,18 @@ exports.usersThatFollow = function (placeId, callback) {
         collection.find({'places': { '$elemMatch': { '_id': new BSON.ObjectID(placeId) } } }).toArray(function (err, result) {
             if (err) callback(err, null);
             else callback(null, result);
+        });
+    });
+};
+
+exports.Authentication = function (email, password, callback) {
+    userNameIndex();
+    db.collection(collection_name, function (err, collection) {
+        collection.findOne({'email': email, 'password' : password}, function (err, user) {
+            if (err)
+                callback(err, null);
+            else
+                callback(null, user);
         });
     });
 };

@@ -100,3 +100,16 @@ exports.Feed = function (req, res) {
         })
     });
 };
+
+exports.IsUserExist = function (req, res) {
+    var email = req.body.email;
+    var password = req.body.password;
+    if (email && password) {
+        dal.Authentication(email, password, function (err, result) {
+            if (result)
+                res.send(result);
+            else
+                res.send({'error': 'An error has occurred'});
+        });
+    }
+};

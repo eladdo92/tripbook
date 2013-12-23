@@ -92,7 +92,7 @@ exports.getPlaces = function (callback) {
     connect_collection(function (error, collection) {
         if (error) callback(error, null);
         else {
-            collection.find().toArray(function (error, result) {
+            collection.find().sort({'name' : 1}).toArray(function (error, result) {
                 if (error) callback(error, null);
                 else callback(null, result);
             });

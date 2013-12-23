@@ -52,6 +52,7 @@ app.post('/users/new', user.Register);
 app.post('/tracks/new', track.PostTrack);
 //READ
 app.get('/users', user.SearchUser);
+app.post('/login', user.IsUserExist);
 app.get('/tracks/place/:id', track.getTracksTagedWithPlace);
 app.get('/tracks/user/:id', track.getTracksUploadedByUser);
 app.get('/place', place.SearchPlace);

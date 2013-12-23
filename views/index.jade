@@ -1,16 +1,14 @@
 extends layout
 block content
-    h1 Menu
-        ul
-            li
-                a(href='./../like_and_comment.html') tracks
-            li
-                a(href='./../friendship.html') make friends
-            li
-                a(href='./../follow_place.html') follow place
-            li
-                a(href='./../register.html') register
-            li
-                a(href='./../post.html') post track
-            li
-                a(href='./../TagTrackWithPlace.html') Tag track with place
+    script(src="js/login.js")
+    section(data-role="page", id="loginpage")
+        div(data-role="header", data-theme="b")
+            h1 Tripbook
+        div(data-role="content")
+            div
+                form(data-role="controlgroup", id="login", method="post")
+                    input(type="email", name="email", id="email", placeholder="Email", required)
+                    input(type="password", name="password", id="password", placeholder="Password", required)
+                    input(type="submit", value="Log In", data-theme="b")
+            br
+            a(data-role="button", data-icon="forward", data-iconpos="right", data-theme="e", href="register.html") Register

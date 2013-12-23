@@ -1,0 +1,3 @@
+CONFIG = {
+    feed_location : ""
+};
