@@ -187,7 +187,7 @@ exports.addTrack = function (track, callback) {
 
 exports.getPlaceTracks = function (placeId, callback) {
     db.collection('tracks', function (err, collection) {
-        collection.find({'places': {$elemMatch: {'_id': placeId}}}).toArray(function (err, tracks) {
+        collection.find({'places': {$elemMatch: {'_id': BSON.ObjectID(placeId)}}}).toArray(function (err, tracks) {
             if (err)
                 callback(err, null);
             else

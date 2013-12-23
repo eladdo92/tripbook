@@ -1,6 +1,10 @@
 extends layout
 block content
     script(src="js/login.js")
+    script(src="js/serverProxy.js")
+    script(src="js/userManager.js")
+    script(src="js/htmlGenerator.js")
+    script(src="js/tripbookController.js")
     section(data-role="page", id="loginpage")
         div(data-role="header", data-theme="b")
             h1 Tripbook
@@ -12,3 +16,18 @@ block content
                     input(type="submit", value="Log In", data-theme="b")
             br
             a(data-role="button", data-icon="forward", data-iconpos="right", data-theme="e", href="register.html") Register
+
+    section(data-role="page", id="feed" dir="rlt")
+        div(data-role="header", data-theme="b")
+            h1 Tripbook
+        div(data-role="content" id="feedContent")
+
+    section(data-role="page", id="userProfile")
+        div(data-role="header", data-theme="b")
+            h1 Tripbook
+        div(data-role="content" id="profileContent")
+
+    section(data-role="page", id="place")
+        div(data-role="header", data-theme="b")
+            h1 Tripbook
+        div(data-role="content" id="placeContent")

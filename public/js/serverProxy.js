@@ -1,7 +1,7 @@
 'use strict';
 
 var serverProxy = (function($) {
-    var baseUrl = 'http://localhost:801/';
+    var baseUrl = '/';
 
     function getFeed(userId) {
         var url = baseUrl + 'feed/' + userId;
@@ -27,6 +27,33 @@ var serverProxy = (function($) {
         });
     }
 
+    function dislike(tripId, userId) {
+        var url = baseUrl + 'tracks/like/' + tripId;
+        return $.ajax({
+            type: 'delete',
+            url: url,
+            data: { user_id: userId }
+        });
+    }
+
+    function comment(tripId, userId, userName, comment) {
+        var url = baseUrl + 'tracks/comment/' + tripId;
+
+        var comment = {
+            content: comment,
+            user: {
+                _id: userId,
+                name: userName
+            }
+        };
+
+        return $.ajax({
+            type: 'PUT',
+            url: url,
+            data: comment
+        });
+    }
+
     function login(email, password) {
         var url = baseUrl + 'login' + tripId;
         return $.post(url, { email: email, password: password });
@@ -37,6 +64,8 @@ var serverProxy = (function($) {
         getProfile: getProfile,
         getPlacePage: getPlacePage,
         like: like,
+        dislike: dislike,
+        comment: comment,
         login: login
     };
 

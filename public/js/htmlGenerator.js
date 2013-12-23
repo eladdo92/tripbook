@@ -58,42 +58,51 @@ var htmlGenerator = (function($) {
         var $comment = generateComment({user: user, content: comment});
         $(getCommentTxtSelector(tripId)).val(null);
         $comments.append($comment);
+        render();
     }
 
     function generatePlaceLink(placeObj) {
-        var placeLink = 'place/' + placeObj._id;
         var placeName = placeObj.name;
+        var placeLink = '../?id=' + placeObj._id +'&name='+ placeName+'#place';
         return $('<a href="'+placeLink+'">'+placeName+'#</a>');
     }
 
     function generateUserLink(userObj) {
-        var userLink = 'profile/' + userObj._id;
         var useName = userObj.name;
+        var userLink = '../?id=' + userObj._id + '&name='+ useName+'#userProfile';
         return $('<a href="'+userLink+'">'+useName+'</a>');
     }
 
     function generateLikes(likesArray, tripId) {
         var likeCounter = likesArray ? likesArray.length || 0 : 0;
         var $likeCounter = $('<span class="likeCounter">').text(likeCounter);
-        var text = 'אנשים אהבו זאת';
-        return $('<span class="likes">').append(text).append($likeCounter).append(generateLikeFrom(tripId));
+        var text = ' אנשים אהבו זאת ';
+        return $('<span class="likes">').append($likeCounter).append(text).append(generateLikeFrom(tripId));
     }
 
     function generateLikeFrom(tripId) {
         return $('<input type="button" value="אהבתי" onclick="tripbookController.likeTrip(\''+tripId+'\')">');
     }
 
-    function generateDislikeFrom(tripId) {
-        return $('<input type="button" value="לא אהבתי" onclick="tripbookController.dislikeTrip(\''+tripId+'\')">');
+    function updateLikeFrom(tripId) {
+        $('#trip'+tripId+' .likes input')
+            .attr('value', 'אהבתי')
+            .attr('onclick', 'tripbookController.likeTrip(\''+tripId+'\')')
+            .button('refresh');
+        render();
     }
 
-    function removeLikeBtn(tripId) {
-        $('#trip'+tripId+' .likes input').remove();
+    function updateDislikeFrom(tripId) {
+        $('#trip'+tripId+' .likes input')
+            .attr('value', 'לא אהבתי')
+            .attr('onclick', 'tripbookController.dislikeTrip(\''+tripId+'\')')
+            .button('refresh');;
+        render();
     }
 
     function updateLikesCounter(tripId, decrease) {
         var $likesCounter = $('#trip'+tripId+' .likeCounter');
-        var counter = +$likesCounter.text();
+        var counter = +$likesCounter[0].innerText;
         decrease ? counter-- : counter ++;
         $likesCounter.text(counter);
     }
@@ -102,7 +111,7 @@ var htmlGenerator = (function($) {
         var $userLink = generateUserLink(tripObj.user);
 
         var tripContent = tripObj.content;
-        var $tripContent = $('<div>').text(tripContent);
+        var $tripContent = $('<h3>').text(tripContent);
 
         var $tags = generatePlacesTags(tripObj.places);
         var $likes = generateLikes(tripObj.likes, tripObj._id);
@@ -122,6 +131,7 @@ var htmlGenerator = (function($) {
         for(var i = 0; i < trips.length; i++) {
             var $currentTrip = generateTrip(trips[i]);
             $trips.append($currentTrip);
+            $trips.append('<hr />');
         }
 
         return $trips;
@@ -151,14 +161,21 @@ var htmlGenerator = (function($) {
 
     function likeTrip(tripId) {
         updateLikesCounter(tripId);
-        removeLikeBtn(tripId);
-        $('#trip'+tripId+' .likes').append(generateDislikeFrom(tripId));
+        updateDislikeFrom(tripId);
     }
 
     function dislikeTrip(tripId) {
         updateLikesCounter(tripId, true);
-        removeLikeBtn(tripId);
-        $('#trip'+tripId+' .likes').append(generateLikeFrom(tripId));
+        updateLikeFrom(tripId);
+    }
+
+    function getTitle(title) {
+        title = title || 'Feed';
+        return $('<h1></h1>').text(title);
+    }
+
+    function render(){
+        $('#feed').trigger('pagecreate');
     }
 
     return {
@@ -166,7 +183,9 @@ var htmlGenerator = (function($) {
         loginLink: loginLink,
         likeTrip: likeTrip,
         dislikeTrip: dislikeTrip,
-        addComment: addComment
+        addComment: addComment,
+        render: render,
+        getTitle: getTitle
     };
 
 })(jQuery);
