@@ -3,25 +3,7 @@ $(document).ready(function(){
         var email = $(this).find('#email').val();
         var password = $(this).find('#password').val();
 
-        userManager.login(email, password).done(function() {
-            tripbookController.init();
-        });
-
-
-        //var details = {
-        //    email : email,
-        //    password : password
-        //};
-
-        //$.post("/login", details, function(data){
-        //    console.log(data);
-        //    if(data.error){
-        //        alert("Unautoraized");
-        //    }
-        //    else {
-        //        location.replace(CONFIG.feed_location)
-        //    }
-        //});
+        tripbookController.authenticate(email, password);
         event.preventDefault();
         return false;
     });

@@ -1,28 +1,16 @@
 'use strict';
 
 var userManager = (function(serverProxy) {
-//    var currentUserId = '';
-//    var currentUserName = '';
     var currentUser = {};
     var isLoggedIn = false;
 
     function login(email, password) {
         return serverProxy.login(email, password).done(function(user){
-            if(user.error){
-                alert("Unautoraized");
-            }
-            else {
+            if(!user.error){
                 isLoggedIn = true;
                 currentUser = user;
-//                currentUserId = user._id;
-//                currentUserName = user.name;
-
-                location.replace(CONFIG.feed_location);
             }
         });
-//        currentUserId = '52a08b7994a39b0740000004';
-//        currentUserName = 'Oded Cagan';
-//        isLoggedIn = false;
     }
 
     function doesUserLikeTrack(trackLikes) {

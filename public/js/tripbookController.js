@@ -65,7 +65,13 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
 
     function authenticate(email, password){
         userManager.login(email, password);
-        init();
+        if(userManager.getCurrentUser()._id) {
+            location.replace(CONFIG.feed_location);
+            init();
+        }
+        else {
+            alert("Unauthorized");
+        }
     }
 
     function register(user) {

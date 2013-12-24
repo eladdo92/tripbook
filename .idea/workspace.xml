@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3af7c42b-cd30-4fc2-9b4c-4f530c1bd5c5" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.jade" afterPath="$PROJECT_DIR$/views/layout.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/login.js" afterPath="$PROJECT_DIR$/public/js/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/tripbookController.js" afterPath="$PROJECT_DIR$/public/js/tripbookController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/userManager.js" afterPath="$PROJECT_DIR$/public/js/userManager.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tripbook.iws" />
@@ -25,11 +30,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="user.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/user.js">
+      <file leaf-file-name="serverProxy.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/serverProxy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="43" selection-start="2940" selection-end="2940" vertical-scroll-proportion="0.0" vertical-offset="1444" max-vertical-offset="2040">
-              <folding />
+            <state line="56" column="13" selection-start="1286" selection-end="1286" vertical-scroll-proportion="0.0" vertical-offset="822" max-vertical-offset="1921">
+              <folding>
+                <marker date="1387915242877" expanded="true" signature="46:2517" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -37,34 +44,7 @@
       <file leaf-file-name="userManager.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/userManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="35" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="place.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DAL/place.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="19" selection-start="2071" selection-end="2071" vertical-scroll-proportion="0.0" vertical-offset="1223" max-vertical-offset="2125">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layout.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="6" selection-start="611" selection-end="611" vertical-scroll-proportion="-8.84" vertical-offset="0" max-vertical-offset="340">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="20" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1173">
+            <state line="37" column="22" selection-start="907" selection-end="921" vertical-scroll-proportion="0.0" vertical-offset="305" max-vertical-offset="901">
               <folding />
             </state>
           </provider>
@@ -73,25 +53,54 @@
       <file leaf-file-name="tripbookController.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/tripbookController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.20469798" vertical-offset="184" max-vertical-offset="1054">
+            <state line="12" column="12" selection-start="379" selection-end="379" vertical-scroll-proportion="0.33245382" vertical-offset="78" max-vertical-offset="2210">
               <folding>
-                <element signature="e#611#918#0" expanded="false" />
-                <element signature="e#953#1003#0" expanded="false" />
-                <element signature="e#1054#1219#0" expanded="false" />
+                <element signature="e#3110#5615#0" expanded="false" />
+                <element signature="e#3226#5332#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serverProxy.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/serverProxy.js">
+      <file leaf-file-name="htmlGenerator.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/htmlGenerator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="36" selection-start="733" selection-end="733" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+            <state line="193" column="36" selection-start="6185" selection-end="6185" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="1139">
               <folding>
-                <element signature="e#101#185#0" expanded="false" />
-                <element signature="e#219#310#0" expanded="false" />
-                <element signature="e#347#440#0" expanded="false" />
-                <element signature="e#818#960#0" expanded="false" />
+                <element signature="e#91#467#0" expanded="false" />
+                <element signature="e#131#168#0" expanded="false" />
+                <element signature="e#248#438#0" expanded="false" />
+                <element signature="e#376#428#0" expanded="false" />
+                <element signature="e#507#722#0" expanded="false" />
+                <element signature="e#772#1296#0" expanded="false" />
+                <element signature="e#946#1131#0" expanded="false" />
+                <element signature="e#1001#1121#0" expanded="false" />
+                <element signature="e#1341#1417#0" expanded="false" />
+                <element signature="e#1460#1798#0" expanded="false" />
+                <element signature="e#1847#2091#0" expanded="false" />
+                <element signature="e#2134#2324#0" expanded="false" />
+                <element signature="e#2365#2551#0" expanded="false" />
+                <element signature="e#2600#2912#0" expanded="false" />
+                <element signature="e#2964#3227#0" expanded="false" />
+                <element signature="e#3135#3200#0" expanded="false" />
+                <element signature="e#3265#3476#0" expanded="false" />
+                <element signature="e#3517#3734#0" expanded="false" />
+                <element signature="e#3786#3935#0" expanded="false" />
+                <element signature="e#3987#4188#0" expanded="false" />
+                <element signature="e#4225#4792#0" expanded="false" />
+                <element signature="e#4832#5088#0" expanded="false" />
+                <element signature="e#4914#5058#0" expanded="false" />
+                <element signature="e#5133#5421#0" expanded="false" />
+                <element signature="e#5221#5291#0" expanded="false" />
+                <element signature="e#5322#5382#0" expanded="false" />
+                <element signature="e#5452#5501#0" expanded="false" />
+                <element signature="e#5528#5583#0" expanded="false" />
+                <element signature="e#5615#5693#0" expanded="false" />
+                <element signature="e#5728#5809#0" expanded="false" />
+                <element signature="e#5840#5923#0" expanded="false" />
+                <element signature="e#5946#5995#0" expanded="false" />
+                <element signature="e#6309#6395#0" expanded="false" />
+                <element signature="e#6408#6726#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -100,7 +109,7 @@
       <file leaf-file-name="login.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="33" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+            <state line="5" column="57" selection-start="234" selection-end="234" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
               <folding />
             </state>
           </provider>
@@ -124,8 +133,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/DAL/user.js" />
-        <option value="$PROJECT_DIR$/views/search.jade" />
         <option value="$PROJECT_DIR$/views/places.jade" />
         <option value="$PROJECT_DIR$/public/js/places.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
@@ -133,13 +140,15 @@
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/public/js/friends.js" />
         <option value="$PROJECT_DIR$/routes/b.js" />
-        <option value="$PROJECT_DIR$/views/layout.jade" />
         <option value="$PROJECT_DIR$/public/js/serverProxy.js" />
-        <option value="$PROJECT_DIR$/routes/user.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/public/js/login.js" />
+        <option value="$PROJECT_DIR$/routes/user.js" />
         <option value="$PROJECT_DIR$/public/js/userManager.js" />
+        <option value="$PROJECT_DIR$/public/js/login.js" />
         <option value="$PROJECT_DIR$/public/js/tripbookController.js" />
+        <option value="$PROJECT_DIR$/public/js/configuration.js" />
+        <option value="$PROJECT_DIR$/views/layout.jade" />
+        <option value="$PROJECT_DIR$/views/index.jade" />
       </list>
     </option>
   </component>
@@ -175,6 +184,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -217,7 +227,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tripbook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tripbook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -237,7 +265,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -255,6 +282,14 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -265,23 +300,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -386,9 +413,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279743" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3279743" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -425,9 +452,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16178624" sideWeight="0.670418" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -451,78 +478,36 @@
     <MESSAGE value="login" />
     <MESSAGE value="remove cross domain&#10;update login" />
     <MESSAGE value="search friends &amp; search places" />
-    <option name="LAST_COMMIT_MESSAGE" value="search friends &amp; search places" />
+    <MESSAGE value="finish login" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish login" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/index.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="29" selection-start="58" selection-end="58" vertical-scroll-proportion="0.05954466" vertical-offset="0" max-vertical-offset="571">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/places.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="25" selection-start="54" selection-end="54" vertical-scroll-proportion="-1.36" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="7" selection-start="158" selection-end="158" vertical-scroll-proportion="0.39932886" vertical-offset="0" max-vertical-offset="596">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="22" selection-start="225" selection-end="225" vertical-scroll-proportion="0.3137584" vertical-offset="0" max-vertical-offset="596">
-          <folding />
-        </state>
+        <state line="13" column="22" selection-start="225" selection-end="225" vertical-scroll-proportion="0.3137584" vertical-offset="0" max-vertical-offset="596" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/places.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="70" selection-start="318" selection-end="324" vertical-scroll-proportion="0.17114094" vertical-offset="0" max-vertical-offset="596">
-          <folding />
-        </state>
+        <state line="6" column="70" selection-start="318" selection-end="324" vertical-scroll-proportion="0.17114094" vertical-offset="0" max-vertical-offset="596" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/friends.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="65" selection-start="695" selection-end="715" vertical-scroll-proportion="0.60714287" vertical-offset="0" max-vertical-offset="408">
-          <folding />
-        </state>
+        <state line="14" column="65" selection-start="695" selection-end="715" vertical-scroll-proportion="0.60714287" vertical-offset="0" max-vertical-offset="408" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/like_and_comment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="34" selection-start="2362" selection-end="2362" vertical-scroll-proportion="0.82653064" vertical-offset="577" max-vertical-offset="2074">
-          <folding />
-        </state>
+        <state line="53" column="34" selection-start="2362" selection-end="2362" vertical-scroll-proportion="0.82653064" vertical-offset="577" max-vertical-offset="2074" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DAL/place.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="79" column="19" selection-start="2071" selection-end="2071" vertical-scroll-proportion="0.0" vertical-offset="1223" max-vertical-offset="2125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="6" selection-start="611" selection-end="611" vertical-scroll-proportion="-8.84" vertical-offset="0" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="43" selection-start="2940" selection-end="2940" vertical-scroll-proportion="0.0" vertical-offset="1444" max-vertical-offset="2040">
           <folding />
         </state>
       </provider>
@@ -534,67 +519,120 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/htmlGenerator.js">
+    <entry file="file://$PROJECT_DIR$/views/friends.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="13" selection-start="4362" selection-end="4362" vertical-scroll-proportion="0.31543624" vertical-offset="390" max-vertical-offset="1088">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="13" selection-start="28" selection-end="28" vertical-scroll-proportion="0.04644809" vertical-offset="0" max-vertical-offset="366">
           <folding>
-            <element signature="e#91#467#0" expanded="false" />
-            <element signature="e#507#722#0" expanded="false" />
-            <element signature="e#772#1296#0" expanded="false" />
-            <element signature="e#1341#1417#0" expanded="false" />
-            <element signature="e#1460#1798#0" expanded="false" />
-            <element signature="e#1847#2073#0" expanded="false" />
-            <element signature="e#2116#2275#0" expanded="false" />
-            <element signature="e#2316#2468#0" expanded="false" />
-            <element signature="e#2517#2815#0" expanded="false" />
-            <element signature="e#2855#2973#0" expanded="false" />
-            <element signature="e#3016#3140#0" expanded="false" />
-            <element signature="e#3177#3236#0" expanded="false" />
-            <element signature="e#3288#3483#0" expanded="false" />
-            <element signature="e#3520#4088#0" expanded="false" />
-            <element signature="e#4128#4347#0" expanded="false" />
-            <element signature="e#4711#4760#0" expanded="false" />
-            <element signature="e#4787#4842#0" expanded="false" />
-            <element signature="e#4874#5021#0" expanded="false" />
-            <element signature="e#5056#5206#0" expanded="false" />
-            <element signature="e#5219#5394#0" expanded="false" />
+            <element signature="tag#div#0;tag#section#0;tag#block#0" expanded="false" />
+            <element signature="tag#div#1;tag#section#0;tag#block#0" expanded="false" />
+            <element signature="tag#section#1;tag#block#0" expanded="false" />
+            <element signature="tag#div#0;tag#section#1;tag#block#0" expanded="false" />
+            <element signature="tag#section#2;tag#block#0" expanded="false" />
+            <element signature="tag#div#0;tag#section#2;tag#block#0" expanded="false" />
+            <element signature="tag#div#0;tag#section#3;tag#block#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="22" selection-start="3062" selection-end="3062" vertical-scroll-proportion="0.47826087" vertical-offset="1632" max-vertical-offset="2040">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/configuration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="27" selection-start="38" selection-end="38" vertical-scroll-proportion="0.04347826" vertical-offset="0" max-vertical-offset="391">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="6" selection-start="611" selection-end="611" vertical-scroll-proportion="0.60382515" vertical-offset="0" max-vertical-offset="366">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/serverProxy.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="36" selection-start="733" selection-end="733" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+        <state line="56" column="13" selection-start="1286" selection-end="1286" vertical-scroll-proportion="0.0" vertical-offset="822" max-vertical-offset="1921">
           <folding>
-            <element signature="e#101#185#0" expanded="false" />
-            <element signature="e#219#310#0" expanded="false" />
-            <element signature="e#347#440#0" expanded="false" />
-            <element signature="e#818#960#0" expanded="false" />
+            <marker date="1387915242877" expanded="true" signature="46:2517" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/htmlGenerator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="193" column="36" selection-start="6185" selection-end="6185" vertical-scroll-proportion="0.0" vertical-offset="653" max-vertical-offset="1139">
+          <folding>
+            <element signature="e#91#467#0" expanded="false" />
+            <element signature="e#131#168#0" expanded="false" />
+            <element signature="e#248#438#0" expanded="false" />
+            <element signature="e#376#428#0" expanded="false" />
+            <element signature="e#507#722#0" expanded="false" />
+            <element signature="e#772#1296#0" expanded="false" />
+            <element signature="e#946#1131#0" expanded="false" />
+            <element signature="e#1001#1121#0" expanded="false" />
+            <element signature="e#1341#1417#0" expanded="false" />
+            <element signature="e#1460#1798#0" expanded="false" />
+            <element signature="e#1847#2091#0" expanded="false" />
+            <element signature="e#2134#2324#0" expanded="false" />
+            <element signature="e#2365#2551#0" expanded="false" />
+            <element signature="e#2600#2912#0" expanded="false" />
+            <element signature="e#2964#3227#0" expanded="false" />
+            <element signature="e#3135#3200#0" expanded="false" />
+            <element signature="e#3265#3476#0" expanded="false" />
+            <element signature="e#3517#3734#0" expanded="false" />
+            <element signature="e#3786#3935#0" expanded="false" />
+            <element signature="e#3987#4188#0" expanded="false" />
+            <element signature="e#4225#4792#0" expanded="false" />
+            <element signature="e#4832#5088#0" expanded="false" />
+            <element signature="e#4914#5058#0" expanded="false" />
+            <element signature="e#5133#5421#0" expanded="false" />
+            <element signature="e#5221#5291#0" expanded="false" />
+            <element signature="e#5322#5382#0" expanded="false" />
+            <element signature="e#5452#5501#0" expanded="false" />
+            <element signature="e#5528#5583#0" expanded="false" />
+            <element signature="e#5615#5693#0" expanded="false" />
+            <element signature="e#5728#5809#0" expanded="false" />
+            <element signature="e#5840#5923#0" expanded="false" />
+            <element signature="e#5946#5995#0" expanded="false" />
+            <element signature="e#6309#6395#0" expanded="false" />
+            <element signature="e#6408#6726#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="33" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+        <state line="5" column="57" selection-start="234" selection-end="234" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/userManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="35" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+        <state line="37" column="22" selection-start="907" selection-end="921" vertical-scroll-proportion="0.0" vertical-offset="305" max-vertical-offset="901">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/tripbookController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.20469798" vertical-offset="184" max-vertical-offset="1054">
+        <state line="12" column="12" selection-start="379" selection-end="379" vertical-scroll-proportion="0.33245382" vertical-offset="78" max-vertical-offset="2210">
           <folding>
-            <element signature="e#611#918#0" expanded="false" />
-            <element signature="e#953#1003#0" expanded="false" />
-            <element signature="e#1054#1219#0" expanded="false" />
+            <element signature="e#3110#5615#0" expanded="false" />
+            <element signature="e#3226#5332#0" expanded="false" />
           </folding>
         </state>
       </provider>
