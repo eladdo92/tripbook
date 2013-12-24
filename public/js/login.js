@@ -2,8 +2,7 @@ $(document).ready(function(){
     $('#login').submit(function(event){
         var email = $(this).find('#email').val();
         var password = $(this).find('#password').val();
-
-        userManager.login(email, password);
+        tripbookController.authenticate(email, password);
 
 
         //var details = {

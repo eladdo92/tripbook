@@ -1,7 +1,7 @@
 'use strict';
 
 var serverProxy = (function($) {
-    var baseUrl = 'http://localhost:801/';
+    var baseUrl = '/';
 
     function getFeed(userId) {
         var url = baseUrl + 'feed/' + userId;
@@ -28,7 +28,7 @@ var serverProxy = (function($) {
     }
 
     function login(email, password) {
-        var url = baseUrl + 'login' + tripId;
+        var url = baseUrl + 'login';
         return $.post(url, { email: email, password: password });
     }
 

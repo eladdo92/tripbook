@@ -8,14 +8,12 @@ var userManager = (function(serverProxy) {
     function login(email, password) {
         serverProxy.login(email, password).done(function(user){
             if(user.error){
-                alert("Unautoraized");
+                alert("Unauthorized");
             }
             else {
                 isLoggedIn = true;
                 currentUserId = user._id;
                 currentUserName = user.name;
-
-                location.replace(CONFIG.feed_location)
             }
         });
     }

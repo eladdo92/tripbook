@@ -4,20 +4,17 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
 
     function getFeed(userId) {
         var feedPromise = serverProxy.getFeed(userId);
-        var html = htmlGenerator.generateTrips(feedPromise);
-        return html;
+        return htmlGenerator.generateTrips(feedPromise);
     }
 
     function getProfile(userId) {
         var profilePromise = serverProxy.getProfile(userId);
-        var html = htmlGenerator.generateTrips(profilePromise);
-        return html;
+        return htmlGenerator.generateTrips(profilePromise);
     }
 
     function getPlacePage(placeId) {
         var placePagePromise = serverProxy.getPlacePage(placeId);
-        var html = htmlGenerator.generateTrips(placePagePromise);
-        return html;
+        return htmlGenerator.generateTrips(placePagePromise);
     }
 
     function likeTrip(tripId) {
@@ -42,23 +39,30 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
         htmlGenerator.addComment(tripId, comment, userManager.getCurrentUser());
     }
 
-    function init() {
-        userManager.login(); //just for now...
-        var userId = userManager.getCurrentUser()._id;
+    function authenticate(email, password){
+        userManager.login(email, password);
+        init();
+    }
 
-        if(userId) {
-            getFeed(userId).then(function(feed) {
-                $('#feedContent').html(feed);
-            });
-        }
-        else {
-            $('#feedContent').html(htmlGenerator.loginLink());
+    function init() {
+        if (!userManager.isLoggedIn()) {
+            var userId = userManager.getCurrentUser()._id;
+
+            if(userId) {
+                getFeed(userId).then(function(feed) {
+                    $('#feedContent').html(feed);
+                });
+            }
+            else {
+                $('#feedContent').html(htmlGenerator.loginLink());
+            }
         }
 
     }
 
     return {
         init: init,
+        authenticate: authenticate,
         likeTrip: likeTrip,
         dislikeTrip: dislikeTrip,
         addComment: addComment
