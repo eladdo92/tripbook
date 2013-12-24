@@ -27,7 +27,7 @@ var htmlGenerator = (function($) {
     }
 
     function generateComments(comments, tripId) {
-        var $commentsContainer = $('<div>').append('<h4>תגובות:</h4>');
+        var $commentsContainer = $('<div>').append('<h4>comments:</h4>');
         var $comments = $('<div class="comments">');
 
         if(comments && comments.length !== 0) {
@@ -47,9 +47,9 @@ var htmlGenerator = (function($) {
     }
 
     function generateCommentForm(tripId) {
-        var $input = $('<input type="text" placeholder="הכנס תגובה...">');
+        var $input = $('<input type="text" placeholder="enter comment...">');
         var selector = getCommentTxtSelector(tripId);
-        var $btn = $('<input type="button" value="שלח" onclick="tripbookController.addComment(\''+tripId+'\', \''+selector+'\')">');
+        var $btn = $('<input type="button" value="send" onclick="tripbookController.addComment(\''+tripId+'\', \''+selector+'\')">');
         return $('<div class="commentsForm">').append($input, $btn);
     }
 
@@ -76,12 +76,12 @@ var htmlGenerator = (function($) {
     function generateLikes(likesArray, tripId) {
         var likeCounter = likesArray ? likesArray.length || 0 : 0;
         var $likeCounter = $('<span class="likeCounter">').text(likeCounter);
-        var text = ' אנשים אהבו זאת ';
+        var text = ' people liked it ';
         return $('<span class="likes">').append($likeCounter).append(text).append(generateLikeFrom(tripId, likesArray));
     }
 
     function generateLikeFrom(tripId, likesArray) {
-        var $btn = $('<input type="button" value="אהבתי" onclick="tripbookController.likeTrip(\''+tripId+'\')">');
+        var $btn = $('<input type="button" value="like" onclick="tripbookController.likeTrip(\''+tripId+'\')">');
         if(userManager.doesUserLikeTrack(likesArray)) {
             $btn = changeToDislikeFrom($btn, tripId);
         }
@@ -90,7 +90,7 @@ var htmlGenerator = (function($) {
 
     function updateLikeFrom(tripId) {
         $('#trip'+tripId+' .likes input')
-            .attr('value', 'אהבתי')
+            .attr('value', 'like')
             .attr('onclick', 'tripbookController.likeTrip(\''+tripId+'\')')
             .button('refresh');
         render();
@@ -98,7 +98,7 @@ var htmlGenerator = (function($) {
 
     function updateDislikeFrom(tripId) {
         $('#trip'+tripId+' .likes input')
-            .attr('value', 'לא אהבתי')
+            .attr('value', 'dislike')
             .attr('onclick', 'tripbookController.dislikeTrip(\''+tripId+'\')')
             .button('refresh');
         render();
@@ -106,7 +106,7 @@ var htmlGenerator = (function($) {
 
     function changeToDislikeFrom($button, tripId) {
         return $button
-            .attr('value', 'לא אהבתי')
+            .attr('value', 'dislike')
             .attr('onclick', 'tripbookController.dislikeTrip(\''+tripId+'\')');
     }
 
@@ -166,7 +166,7 @@ var htmlGenerator = (function($) {
     }
 
     function loginLink() {
-        return $('<a href="#login">התחבר</a>');
+        return $('<a href="#login">login</a>');
     }
 
     function likeTrip(tripId) {
@@ -191,7 +191,7 @@ var htmlGenerator = (function($) {
     function generateAddFriendBtn(areFriends, friendId) {
         if(areFriends) return $('');
         return $('<input type="button" id="addFriend">')
-            .attr('value', 'הוסף חבר')
+            .attr('value', 'Add friend')
             .attr('onclick', 'tripbookController.addFriend(\''+friendId+'\')');
     }
 

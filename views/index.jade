@@ -26,3 +26,23 @@ block content
         div(data-role="header", data-theme="b")
             h1 Tripbook
         div(data-role="content" id="placeContent")
+
+    section(data-role="page", id="registerpage")
+        div(data-role="header", data-theme="b")
+            h1 Tripbook
+        div(data-role="content")
+            div
+                form(data-role="controlgroup", id="register", method="post")
+                    input(type="text" placeholder='User Name' name="username" id="username", required)
+                    input(type="email", name="email", id="email", placeholder="Email", required)
+                    input(type="password", name="password", id="password", placeholder="Password", required)
+                    input(type="submit", value="register", data-theme="b")
+
+    section(data-role="page", id="posttrackpage")
+        div(data-role="header", data-theme="b")
+            h1 Tripbook
+        div(data-role="content")
+            div
+                form(data-role="controlgroup", id="posttrack", method="post")
+                    input(type="text" placeholder='content' name="content" id="content", required)                    
+                    input(type="submit", value="posttrack", data-theme="b")
