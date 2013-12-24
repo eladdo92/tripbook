@@ -113,7 +113,7 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
             var id;
             if(id = urlParams.id) {
                 getProfile(id).then(function(profile) {
-                    $('#profileContent').append(htmlGenerator.getTitle());
+                    $('#profileContent').append(htmlGenerator.getTitle(urlParams.name));
                     var addFriendBtn = htmlGenerator.generateAddFriendBtn(userManager.isUserFriendsWith(id), id);
                     $('#profileContent').append(addFriendBtn);
                     if(profile[0].childNodes.length === 0) {
@@ -125,7 +125,7 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
                     $('#userProfile').trigger('pagecreate');
                 });
                 getPlacePage(id).then(function(placePage) {
-                    $('#placeContent').append(htmlGenerator.getTitle());
+                    $('#placeContent').append(htmlGenerator.getTitle(urlParams.name));
                     if(placePage[0].childNodes.length === 0) {
                         $('#placeContent').append($('<div></div>').text('אין מסלולים להצגה'));
                     }
@@ -146,7 +146,7 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
         initHelper();
         $('a').live('click', function() {
             var url = $(this).attr('href');
-            urlParams.id=getURLParameter('id', url);
+            urlParams.id = getURLParameter('id', url);
             urlParams.name = getURLParameter('name', url);
         });
         $('a').live('click', initHelper);
