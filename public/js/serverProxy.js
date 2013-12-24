@@ -27,6 +27,33 @@ var serverProxy = (function($) {
         });
     }
 
+    function dislike(tripId, userId) {
+        var url = baseUrl + 'tracks/like/' + tripId;
+        return $.ajax({
+            type: 'delete',
+            url: url,
+            data: { user_id: userId }
+        });
+    }
+
+    function comment(tripId, userId, userName, comment) {
+        var url = baseUrl + 'tracks/comment/' + tripId;
+
+        var comment = {
+            content: comment,
+            user: {
+                _id: userId,
+                name: userName
+            }
+        };
+
+        return $.ajax({
+            type: 'PUT',
+            url: url,
+            data: comment
+        });
+    }
+
     function login(email, password) {
         var url = baseUrl + 'login';
         return $.post(url, { email: email, password: password });
@@ -53,7 +80,9 @@ var serverProxy = (function($) {
         like: like,
         login: login,
         Register : Register,
-        PostTrack : PostTrack
+        PostTrack : PostTrack,
+        dislike: dislike,
+        comment: comment,
     };
 
 })(jQuery);
