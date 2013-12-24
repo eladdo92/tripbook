@@ -63,6 +63,27 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
     }
     var urlParams = {};
 
+    function register(user) {
+        console.log('Controller: Registering new user');
+        var registerPromise = serverProxy.Register(user);
+        console.log(registerPromise);
+        var html = registerPromise;
+        //TODO
+        //html = 'success' or failure
+        //var html = htmlGenerator.generateTrips(placePagePromise);
+
+        return html;
+    }
+
+        function postTrack(track) {
+        console.log('Controller: Posting a track');
+        var postTrackPromise = serverProxy.PostTrack(track);
+        var html = postTrackPromise;
+        //TODO
+        //var html = htmlGenerator.generateTrips(placePagePromise);
+        return html;
+    }
+
     function init() {
         userManager.login(); //just for now...
         var userId = userManager.getCurrentUser()._id;
@@ -111,6 +132,8 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
         likeTrip: likeTrip,
         dislikeTrip: dislikeTrip,
         addComment: addComment,
+        register: register,
+        postTrack: postTrack
     };
 
 })(jQuery, serverProxy, htmlGenerator, userManager);
