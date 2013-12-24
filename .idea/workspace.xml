@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3af7c42b-cd30-4fc2-9b4c-4f530c1bd5c5" name="Default" comment="remove cross domain&#10;update login">
+    <list default="true" id="3af7c42b-cd30-4fc2-9b4c-4f530c1bd5c5" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/friends.jade" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/friends.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/places.jade" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/places.js" />
-    </list>
-    <list id="3e8c793a-9217-44f4-9a45-6668be3c3133" name="Rejected commit: Default" comment="remove cross domain&#10;update login">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.jade" afterPath="$PROJECT_DIR$/views/layout.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/login.js" afterPath="$PROJECT_DIR$/public/js/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/serverProxy.js" afterPath="$PROJECT_DIR$/public/js/serverProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/tripbookController.js" afterPath="$PROJECT_DIR$/public/js/tripbookController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/userManager.js" afterPath="$PROJECT_DIR$/public/js/userManager.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tripbook.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="$PROJECT_DIR$/public/js/tripbookController.js" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +77,7 @@
       <file leaf-file-name="tripbookController.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/tripbookController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.33242506" vertical-offset="184" max-vertical-offset="1054">
+            <state line="18" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.20469798" vertical-offset="184" max-vertical-offset="1054">
               <folding>
                 <element signature="e#611#918#0" expanded="false" />
                 <element signature="e#953#1003#0" expanded="false" />
@@ -388,14 +377,18 @@
       <created>1387808793824</created>
       <updated>1387808793824</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="remove cross domain&#10;update login">
+      <created>1387898574329</created>
+      <updated>1387898574329</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3279743" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279743" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -404,7 +397,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16178624" sideWeight="0.67202574" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3279743" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279743" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279743" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -457,7 +450,8 @@
     <MESSAGE value="moving the application port to configuration" />
     <MESSAGE value="login" />
     <MESSAGE value="remove cross domain&#10;update login" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove cross domain&#10;update login" />
+    <MESSAGE value="search friends &amp; search places" />
+    <option name="LAST_COMMIT_MESSAGE" value="search friends &amp; search places" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -596,7 +590,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/tripbookController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.33242506" vertical-offset="184" max-vertical-offset="1054">
+        <state line="18" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.20469798" vertical-offset="184" max-vertical-offset="1054">
           <folding>
             <element signature="e#611#918#0" expanded="false" />
             <element signature="e#953#1003#0" expanded="false" />

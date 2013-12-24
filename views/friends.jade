@@ -1,0 +1,17 @@
+extends layout
+block content
+    script(src="js/friends.js")
+    section(data-role="page", id="friends")
+        header(id="header", data-role="header")
+            h1 Friends
+        article(data-role="content")
+            ul(data-role="listview", data-filter="true", id="friends_list")
+        footer(data-role="footer", data-position="fixed")
+            nav(data-role="navbar")
+                ul
+                    li
+                        a(href="#home", data-role="button", data-icon="home") "Home
+                    li
+                        a(href="#photos", data-icon="grid") "Photos"
+                    li
+                        a(href="#about", data-icon="info") "About"
