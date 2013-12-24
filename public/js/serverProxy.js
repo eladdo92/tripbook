@@ -66,9 +66,7 @@ var serverProxy = (function($) {
 
     function PostTrack(track) {
         var url = baseUrl + 'tracks/new';
-        $.post(url, track, function (data) {
-            console.log('posttrack finished, result:' + data);
-        })
+        return $.ajax({ type: 'POST', url: url, data: track });  
     }
 
     function addFriend(userId, friendId) {
