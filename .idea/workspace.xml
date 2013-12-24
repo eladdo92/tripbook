@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3af7c42b-cd30-4fc2-9b4c-4f530c1bd5c5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/friends.jade" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/friends.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/places.jade" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/places.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tripbook.iws" />
@@ -381,7 +377,11 @@
       <created>1387898574329</created>
       <updated>1387898574329</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="search friends &amp; search places">
+      <created>1387898821668</created>
+      <updated>1387898821668</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
