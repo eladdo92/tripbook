@@ -94,11 +94,14 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
 
     function postTrack(track) {
         console.log('Controller: Posting a track');
-        var postTrackPromise = serverProxy.PostTrack(track);
-        var html = postTrackPromise;
-        //TODO
-        //var html = htmlGenerator.generateTrips(placePagePromise);
-        return html;
+        serverProxy.PostTrack(track)
+        .success(function() {
+                alert('post success');
+            })
+            .fail(function(error) {
+                alert("Error can't post track, error:" + error);
+                console.log(error);
+            });
     }
 
     function init() {
