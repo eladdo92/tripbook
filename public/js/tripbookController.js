@@ -63,6 +63,11 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
     }
     var urlParams = {};
 
+    function authenticate(email, password){
+        userManager.login(email, password);
+        init();
+    }
+
     function register(user) {
         console.log('Controller: Registering new user');
         var registerPromise = serverProxy.Register(user);
@@ -160,6 +165,7 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
 
     return {
         init: init,
+        authenticate: authenticate,
         likeTrip: likeTrip,
         dislikeTrip: dislikeTrip,
         addComment: addComment,
