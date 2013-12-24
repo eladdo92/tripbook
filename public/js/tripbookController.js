@@ -99,7 +99,7 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
                 getFeed(userId).then(function(feed) {
                     $('#feedContent').append(htmlGenerator.getTitle());
                     if(feed[0].childNodes.length === 0) {
-                        $('#feedContent').append($('<div></div>').text('אין מסלולים להצגה'));
+                        $('#feedContent').append($('<div></div>').text('no tracks to show'));
                     }
                     else {
                         $('#feedContent').append(feed);
@@ -117,7 +117,7 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
                     var addFriendBtn = htmlGenerator.generateAddFriendBtn(userManager.isUserFriendsWith(id), id);
                     $('#profileContent').append(addFriendBtn);
                     if(profile[0].childNodes.length === 0) {
-                        $('#profileContent').append($('<div></div>').text('אין מסלולים להצגה'));
+                        $('#profileContent').append($('<div></div>').text('no tracks to show'));
                     }
                     else {
                         $('#profileContent').append(profile);
@@ -127,7 +127,7 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
                 getPlacePage(id).then(function(placePage) {
                     $('#placeContent').append(htmlGenerator.getTitle(urlParams.name));
                     if(placePage[0].childNodes.length === 0) {
-                        $('#placeContent').append($('<div></div>').text('אין מסלולים להצגה'));
+                        $('#placeContent').append($('<div></div>').text('no tracks to show'));
                     }
                     else {
                         $('#placeContent').append(placePage);
