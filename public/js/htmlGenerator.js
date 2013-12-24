@@ -77,11 +77,15 @@ var htmlGenerator = (function($) {
         var likeCounter = likesArray ? likesArray.length || 0 : 0;
         var $likeCounter = $('<span class="likeCounter">').text(likeCounter);
         var text = ' אנשים אהבו זאת ';
-        return $('<span class="likes">').append($likeCounter).append(text).append(generateLikeFrom(tripId));
+        return $('<span class="likes">').append($likeCounter).append(text).append(generateLikeFrom(tripId, likesArray));
     }
 
-    function generateLikeFrom(tripId) {
-        return $('<input type="button" value="אהבתי" onclick="tripbookController.likeTrip(\''+tripId+'\')">');
+    function generateLikeFrom(tripId, likesArray) {
+        var $btn = $('<input type="button" value="אהבתי" onclick="tripbookController.likeTrip(\''+tripId+'\')">');
+        if(userManager.doesUserLikeTrack(likesArray)) {
+            $btn = changeToDislikeFrom($btn, tripId);
+        }
+        return $btn;
     }
 
     function updateLikeFrom(tripId) {
@@ -96,8 +100,14 @@ var htmlGenerator = (function($) {
         $('#trip'+tripId+' .likes input')
             .attr('value', 'לא אהבתי')
             .attr('onclick', 'tripbookController.dislikeTrip(\''+tripId+'\')')
-            .button('refresh');;
+            .button('refresh');
         render();
+    }
+
+    function changeToDislikeFrom($button, tripId) {
+        return $button
+            .attr('value', 'לא אהבתי')
+            .attr('onclick', 'tripbookController.dislikeTrip(\''+tripId+'\')');
     }
 
     function updateLikesCounter(tripId, decrease) {
@@ -178,6 +188,18 @@ var htmlGenerator = (function($) {
         $('#feed').trigger('pagecreate');
     }
 
+    function generateAddFriendBtn(areFriends, friendId) {
+        if(areFriends) return $('');
+        return $('<input type="button" id="addFriend">')
+            .attr('value', 'הוסף חבר')
+            .attr('onclick', 'tripbookController.addFriend(\''+friendId+'\')');
+    }
+
+    function updateAddFriendBtn() {
+        $('#addFriend').remove();
+        $('#profile').trigger('pagecreate');
+    }
+
     return {
         generateTrips: generateTripsPromise,
         loginLink: loginLink,
@@ -185,7 +207,9 @@ var htmlGenerator = (function($) {
         dislikeTrip: dislikeTrip,
         addComment: addComment,
         render: render,
-        getTitle: getTitle
+        getTitle: getTitle,
+        generateAddFriendBtn: generateAddFriendBtn,
+        addFriend: updateAddFriendBtn
     };
 
 })(jQuery);

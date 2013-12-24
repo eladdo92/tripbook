@@ -55,7 +55,7 @@ var serverProxy = (function($) {
     }
 
     function login(email, password) {
-        var url = baseUrl + 'login' + tripId;
+        var url = baseUrl + 'login';
         return $.post(url, { email: email, password: password });
     }
     
@@ -73,6 +73,24 @@ var serverProxy = (function($) {
         })
     }
 
+    function addFriend(userId, friendId) {
+        var data = {
+            user: {
+                _id: userId,
+                name: ''
+            },
+            friend: {
+                _id: friendId,
+                name: ''
+            }
+        };
+        return $.ajax({
+            type: 'PUT',
+            url: baseUrl + 'user/friend/new',
+            data: data
+        });
+    }
+
     return {
         getFeed: getFeed,
         getProfile: getProfile,
@@ -83,6 +101,7 @@ var serverProxy = (function($) {
         PostTrack : PostTrack,
         dislike: dislike,
         comment: comment,
+        addFriend: addFriend
     };
 
 })(jQuery);

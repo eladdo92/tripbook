@@ -1,3 +1,3 @@
 CONFIG = {
-    feed_location : ""
+    feed_location : "#feed"
 };

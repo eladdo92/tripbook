@@ -3,7 +3,9 @@ $(document).ready(function(){
         var email = $(this).find('#email').val();
         var password = $(this).find('#password').val();
 
-        userManager.login(email, password);
+        userManager.login(email, password).done(function() {
+            tripbookController.init();
+        });
 
 
         //var details = {
