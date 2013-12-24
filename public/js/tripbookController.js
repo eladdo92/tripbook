@@ -4,17 +4,20 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
 
     function getFeed(userId) {
         var feedPromise = serverProxy.getFeed(userId);
-        return htmlGenerator.generateTrips(feedPromise);
+        var html = htmlGenerator.generateTrips(feedPromise);
+        return html;
     }
 
     function getProfile(userId) {
         var profilePromise = serverProxy.getProfile(userId);
-        return htmlGenerator.generateTrips(profilePromise);
+        var html = htmlGenerator.generateTrips(profilePromise);
+        return html;
     }
 
     function getPlacePage(placeId) {
         var placePagePromise = serverProxy.getPlacePage(placeId);
-        return htmlGenerator.generateTrips(placePagePromise);
+        var html = htmlGenerator.generateTrips(placePagePromise);
+        return html;
     }
 
     function likeTrip(tripId) {
@@ -44,6 +47,27 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
         init();
     }
 
+    function register(user) {
+        console.log('Controller: Registering new user');
+        var registerPromise = serverProxy.Register(user);
+        console.log(registerPromise);
+        var html = registerPromise;
+        //TODO
+        //html = 'success' or failure
+        //var html = htmlGenerator.generateTrips(placePagePromise);
+
+        return html;
+    }
+
+        function postTrack(track) {
+        console.log('Controller: Posting a track');
+        var postTrackPromise = serverProxy.PostTrack(track);
+        var html = postTrackPromise;
+        //TODO
+        //var html = htmlGenerator.generateTrips(placePagePromise);
+        return html;
+    }
+
     function init() {
         if (!userManager.isLoggedIn()) {
             var userId = userManager.getCurrentUser()._id;
@@ -57,6 +81,9 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
                 $('#feedContent').html(htmlGenerator.loginLink());
             }
         }
+        else {
+            $('#feedContent').html(htmlGenerator.loginLink());
+        }
 
     }
 
@@ -65,7 +92,9 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
         authenticate: authenticate,
         likeTrip: likeTrip,
         dislikeTrip: dislikeTrip,
-        addComment: addComment
+        addComment: addComment,
+        register: register,
+        postTrack: postTrack
     };
 
 })(jQuery, serverProxy, htmlGenerator, userManager);

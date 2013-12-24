@@ -31,13 +31,29 @@ var serverProxy = (function($) {
         var url = baseUrl + 'login';
         return $.post(url, { email: email, password: password });
     }
+    
+        function Register(user) {
+        var url = baseUrl + 'users/new/';
+        $.post(url, user, function (data) {
+            console.log('register finished, result:' + data);
+        })
+    }
+
+    function PostTrack(track) {
+        var url = baseUrl + 'tracks/new';
+        $.post(url, track, function (data) {
+            console.log('posttrack finished, result:' + data);
+        })
+    }
 
     return {
         getFeed: getFeed,
         getProfile: getProfile,
         getPlacePage: getPlacePage,
         like: like,
-        login: login
+        login: login,
+        Register : Register,
+        PostTrack : PostTrack
     };
 
 })(jQuery);
