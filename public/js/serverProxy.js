@@ -59,7 +59,7 @@ var serverProxy = (function($) {
         return $.post(url, { email: email, password: password });
     }
     
-        function Register(user) {
+    function Register(user) {
         var url = baseUrl + 'users/new/';
         $.post(url, user, function (data) {
             console.log('register finished, result:' + data);
@@ -91,6 +91,11 @@ var serverProxy = (function($) {
         });
     }
 
+    function getUsers(){
+        var url = baseUrl + 'users/all';
+        return $.get(url);
+    }
+
     return {
         getFeed: getFeed,
         getProfile: getProfile,
@@ -101,7 +106,8 @@ var serverProxy = (function($) {
         PostTrack : PostTrack,
         dislike: dislike,
         comment: comment,
-        addFriend: addFriend
+        addFriend: addFriend,
+        getUsers: getUsers
     };
 
 })(jQuery);

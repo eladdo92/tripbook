@@ -10,22 +10,67 @@ block content
                     input(type="password", name="password", id="password", placeholder="Password", required)
                     input(type="submit", value="Log In", data-theme="b")
             br
-            a(data-role="button", data-icon="forward", data-iconpos="right", data-theme="e", href="register.html") Register
+            a(data-role="button", data-icon="forward", data-iconpos="right", data-theme="e", href="#registerpage", data-transition="flip") Register
 
-    section(data-role="page", id="feed" dir="rlt")
+    section(data-role="page", id="feed", dir="rlt")
         div(data-role="header", data-theme="b")
             h1 Tripbook
-        div(data-role="content" id="feedContent")
+        nav(data-role="navbar", data-theme="b")
+            ul
+                li
+                    a(href="#friends", data-role="button", data-icon="search") Users
+                li
+                    a(href="#places", data-icon="search") Places
+        div(data-role="content", id="feedContent")
+        footer(data-role="footer", data-position="fixed")
+            nav(data-role="navbar")
+                ul
+                    li
+                        a(href="#posttrackpage", data-role="button", data-icon="plus") Post
+                    li
+                        a(href="#feed", data-icon="grid") Feed
+                    li
+                        a(href="#feed", data-icon="home") Profile
 
     section(data-role="page", id="userProfile")
         div(data-role="header", data-theme="b")
             h1 Tripbook
+        nav(data-role="navbar", data-theme="b")
+            ul
+                li
+                    a(href="#friends", data-role="button", data-icon="search") Users
+                li
+                    a(href="#places", data-icon="search") Places
         div(data-role="content" id="profileContent")
+        footer(data-role="footer", data-position="fixed")
+            nav(data-role="navbar")
+                ul
+                    li
+                        a(href="#posttrackpage", data-role="button", data-icon="plus") Post
+                    li
+                        a(href="#feed", data-icon="grid") Feed
+                    li
+                        a(href="#feed", data-icon="home") Profile
 
     section(data-role="page", id="place")
         div(data-role="header", data-theme="b")
             h1 Tripbook
+        nav(data-role="navbar", data-theme="b")
+            ul
+                li
+                    a(href="#friends", data-role="button", data-icon="search") Users
+                li
+                    a(href="#places", data-icon="search") Places
         div(data-role="content" id="placeContent")
+        footer(data-role="footer", data-position="fixed")
+            nav(data-role="navbar")
+                ul
+                    li
+                        a(href="#posttrackpage", data-role="button", data-icon="plus") Post
+                    li
+                        a(href="#feed", data-icon="grid") Feed
+                    li
+                        a(href="#feed", data-icon="home") Profile
 
     section(data-role="page", id="registerpage")
         div(data-role="header", data-theme="b")
@@ -36,7 +81,7 @@ block content
                     input(type="text" placeholder='User Name' name="username" id="username", required)
                     input(type="email", name="email", id="email", placeholder="Email", required)
                     input(type="password", name="password", id="password", placeholder="Password", required)
-                    input(type="submit", value="register", data-theme="b")
+                    input(type="submit", value="register", data-theme="e")
 
     section(data-role="page", id="posttrackpage")
         div(data-role="header", data-theme="b")
@@ -44,5 +89,26 @@ block content
         div(data-role="content")
             div
                 form(data-role="controlgroup", id="posttrack", method="post")
-                    input(type="text" placeholder='content' name="content" id="content", required)                    
-                    input(type="submit", value="posttrack", data-theme="b")
+                    input(type="text" placeholder='content' name="content" id="content", required)
+                    input(type="submit", value="Post Track", data-theme="e")
+        footer(data-role="footer", data-position="fixed")
+            nav(data-role="navbar")
+                ul
+                    li
+                        a(href="#posttrackpage", data-role="button", data-icon="plus") Post
+                    li
+                        a(href="#feed", data-icon="grid") Feed
+                    li
+                        a(href="#feed", data-icon="home") Profile
+
+    section(data-role="page", id="friends")
+        header(id="header", data-role="header")
+            h1 Friends
+        article(data-role="content")
+            ul(data-role="listview", data-filter="true", id="friends_list")
+
+    section(data-role="page", id="places")
+        header(id="header", data-role="header")
+            h1 Places
+        article(data-role="content")
+            ul(data-role="listview", data-filter="true", id="places_list")

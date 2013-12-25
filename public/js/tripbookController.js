@@ -64,14 +64,16 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
     var urlParams = {};
 
     function authenticate(email, password){
-        userManager.login(email, password);
-        if(userManager.getCurrentUser()._id) {
-            location.replace(CONFIG.feed_location);
-            init();
-        }
-        else {
-            alert("Unauthorized");
-        }
+        userManager.login(email, password, function() {
+            if(userManager.getCurrentUser()._id) {
+                location.replace(CONFIG.feed_location);
+                init();
+            }
+            else {
+                alert("Unauthorized");
+            }
+        });
+
     }
 
     function register(user) {
@@ -169,6 +171,12 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
         console.log(friendId);
     }
 
+    function usersList(){
+        serverProxy.getUsers().done(function(data){
+            htmlGenerator.generateUsersList(data, $('#friends_list'));
+        });
+    }
+
     return {
         init: init,
         authenticate: authenticate,
@@ -177,7 +185,8 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
         addComment: addComment,
         register: register,
         postTrack: postTrack,
-        addFriend: addFriend
+        addFriend: addFriend,
+        usersList: usersList
     };
 
 })(jQuery, serverProxy, htmlGenerator, userManager);

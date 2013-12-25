@@ -200,6 +200,24 @@ var htmlGenerator = (function($) {
         $('#profile').trigger('pagecreate');
     }
 
+    function generateUsersList(users_list, container){
+        $(users_list).each(function(i, user){
+            if (!user.error && user.name && user.email){
+                var a = generateUserLink(user).text("");
+                var name = $('<h1/>').text(user.name).addClass('entity');
+                a.append(name);
+                if(user.photo){
+                    var photo = $('<p/>').text(user.photo).addClass('entity');
+                    a.append(photo);
+                }
+                var email = $('<p/>').text(user.email).addClass('entity');
+                a.append(email);
+                var li = $('<li/>').addClass('users-list').append(a);
+                container.append(li).listview('refresh');
+            }
+        });
+    }
+
     return {
         generateTrips: generateTripsPromise,
         loginLink: loginLink,
@@ -209,7 +227,8 @@ var htmlGenerator = (function($) {
         render: render,
         getTitle: getTitle,
         generateAddFriendBtn: generateAddFriendBtn,
-        addFriend: updateAddFriendBtn
+        addFriend: updateAddFriendBtn,
+        generateUsersList: generateUsersList
     };
 
 })(jQuery);

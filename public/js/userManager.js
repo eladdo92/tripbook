@@ -4,11 +4,12 @@ var userManager = (function(serverProxy) {
     var currentUser = {};
     var isLoggedIn = false;
 
-    function login(email, password) {
+    function login(email, password, callback) {
         return serverProxy.login(email, password).done(function(user){
             if(!user.error){
                 isLoggedIn = true;
                 currentUser = user;
+                callback();
             }
         });
     }
