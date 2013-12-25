@@ -78,23 +78,32 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
 
     function register(user) {
         console.log('Controller: Registering new user');
-        var registerPromise = serverProxy.Register(user);
-        console.log(registerPromise);
-        var html = registerPromise;
-        //TODO
-        //html = 'success' or failure
-        //var html = htmlGenerator.generateTrips(placePagePromise);
+        serverProxy.Register(user)
+        .success(function() {
+            
+                userManager.login(user.email, user.password).done(function() {
+                tripbookController.init();
+                });
 
-        return html;
+                init();
+            })
+            .fail(function(error) {
+                //htmlGenerator.generateError();
+                alert("Error can't register user, error:" + error);
+                console.log(error);
+            });
     }
 
     function postTrack(track) {
         console.log('Controller: Posting a track');
-        var postTrackPromise = serverProxy.PostTrack(track);
-        var html = postTrackPromise;
-        //TODO
-        //var html = htmlGenerator.generateTrips(placePagePromise);
-        return html;
+        serverProxy.PostTrack(track)
+        .success(function() {
+                alert('post success');
+            })
+            .fail(function(error) {
+                alert("Error can't post track, error:" + error);
+                console.log(error);
+            });
     }
 
     function init() {

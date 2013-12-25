@@ -12,7 +12,7 @@ block content
             br
             a(data-role="button", data-icon="forward", data-iconpos="right", data-theme="e", href="#registerpage", data-transition="flip") Register
 
-    section(data-role="page", id="feed", dir="rlt")
+    section(data-role="page", id="feed" dir="rlt")
         div(data-role="header", data-theme="b")
             h1 Tripbook
         nav(data-role="navbar", data-theme="b")
@@ -81,7 +81,10 @@ block content
                     input(type="text" placeholder='User Name' name="username" id="username", required)
                     input(type="email", name="email", id="email", placeholder="Email", required)
                     input(type="password", name="password", id="password", placeholder="Password", required)
-                    input(type="submit", value="register", data-theme="e")
+                    input(type="submit", value="Register", data-theme="e")
+                    
+            br
+            a(data-role="button", data-icon="forward", data-iconpos="right", data-theme="e", href="#loginPage") Back
 
     section(data-role="page", id="posttrackpage")
         div(data-role="header", data-theme="b")
@@ -89,8 +92,11 @@ block content
         div(data-role="content")
             div
                 form(data-role="controlgroup", id="posttrack", method="post")
-                    input(type="text" placeholder='content' name="content" id="content", required)
-                    input(type="submit", value="Post Track", data-theme="e")
+                    input(type="text", placeholder='content' name="content" id="content", required)                    
+                    input(type="submit", value="Post", data-theme="e")
+                    
+            br
+            a(data-role="button", data-icon="forward", data-iconpos="right", data-theme="e", href="#feed") Back
         footer(data-role="footer", data-position="fixed")
             nav(data-role="navbar")
                 ul

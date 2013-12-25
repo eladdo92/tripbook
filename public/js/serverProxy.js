@@ -61,16 +61,12 @@ var serverProxy = (function($) {
     
     function Register(user) {
         var url = baseUrl + 'users/new/';
-        $.post(url, user, function (data) {
-            console.log('register finished, result:' + data);
-        })
-    }
+        return $.ajax({ type: 'POST', url: url, data: user });    
+    }    
 
     function PostTrack(track) {
         var url = baseUrl + 'tracks/new';
-        $.post(url, track, function (data) {
-            console.log('posttrack finished, result:' + data);
-        })
+        return $.ajax({ type: 'POST', url: url, data: track });  
     }
 
     function addFriend(userId, friendId) {
