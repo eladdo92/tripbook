@@ -218,6 +218,18 @@ var htmlGenerator = (function($) {
         });
     }
 
+    function generatePlacesList(places_list, container){
+        $(places_list).each(function(i, place){
+            if (!place.error && place.name){
+                var a = generatePlaceLink(place).text('');
+                var name = $('<h1/>').text(place.name).addClass('entity');
+                a.append(name);
+                var li = $('<li/>').append(a);
+                container.append(li).listview('refresh');
+            }
+        });
+    }
+
     return {
         generateTrips: generateTripsPromise,
         loginLink: loginLink,
@@ -228,7 +240,8 @@ var htmlGenerator = (function($) {
         getTitle: getTitle,
         generateAddFriendBtn: generateAddFriendBtn,
         addFriend: updateAddFriendBtn,
-        generateUsersList: generateUsersList
+        generateUsersList: generateUsersList,
+        generatePlacesList: generatePlacesList
     };
 
 })(jQuery);

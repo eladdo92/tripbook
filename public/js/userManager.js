@@ -9,8 +9,8 @@ var userManager = (function(serverProxy) {
             if(!user.error){
                 isLoggedIn = true;
                 currentUser = user;
-                callback();
             }
+            callback();
         });
     }
 

@@ -92,6 +92,12 @@ var serverProxy = (function($) {
         return $.get(url);
     }
 
+
+    function getPlaces(){
+        var url = baseUrl + 'places/all';
+        return $.get(url);
+    }
+
     return {
         getFeed: getFeed,
         getProfile: getProfile,
@@ -103,7 +109,8 @@ var serverProxy = (function($) {
         dislike: dislike,
         comment: comment,
         addFriend: addFriend,
-        getUsers: getUsers
+        getUsers: getUsers,
+        getPlaces: getPlaces
     };
 
 })(jQuery);

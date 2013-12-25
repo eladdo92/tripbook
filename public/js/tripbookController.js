@@ -186,6 +186,13 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
         });
     }
 
+
+    function placesList(){
+        serverProxy.getPlaces().done(function(data){
+            htmlGenerator.generatePlacesList(data, $('#places_list'));
+        });
+    }
+
     return {
         init: init,
         authenticate: authenticate,
@@ -195,7 +202,8 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
         register: register,
         postTrack: postTrack,
         addFriend: addFriend,
-        usersList: usersList
+        usersList: usersList,
+        placesList: placesList
     };
 
 })(jQuery, serverProxy, htmlGenerator, userManager);
