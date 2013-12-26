@@ -80,6 +80,14 @@ var serverProxy = (function($) {
         var url = baseUrl + 'place?placeName=' + placeName;
         return $.ajax({ type: 'GET', dataType: "json", url: url, async:false });  
     }
+    
+    function addTrackToPlace(placeId, trackId, user) {
+        var track = {};
+        track._id = trackId;
+        track.user = user;
+        var url = baseUrl + 'place/track/tag/' + placeId;
+        return $.ajax({ type: 'PUT', url: url, data: track, async:false });  
+    }
 
     function addFriend(userId, friendId) {
         var data = {
@@ -124,7 +132,8 @@ var serverProxy = (function($) {
         getUsers: getUsers,
         getPlaces: getPlaces,
         getPlace: getPlace,
-        addPlace: addPlace
+        addPlace: addPlace,
+        addTrackToPlace : addTrackToPlace
     };
 
 })(jQuery);
