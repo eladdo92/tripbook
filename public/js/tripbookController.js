@@ -118,11 +118,11 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
     console.log(track);
 
     serverProxy.PostTrack(track)
-    .success(function(trackId) {                
+    .success(function(track) {                
                 //add the track it's places
                 for (var i = 0; i < track.places.length; i++) {
                 var currentPlace = track.places[i];
-                serverProxy.addTrackToPlace(currentPlace._id, trackId, track.user )
+                serverProxy.addTrackToPlace(currentPlace._id, track._Id, track.user )
                 }   
                              
                 alert('post success');
