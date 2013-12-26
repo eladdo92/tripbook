@@ -54,6 +54,7 @@ app.put('/user/place/follow', user.followPlace);
 app.put('/tracks/comment/:id', track.comment);
 app.put('/tracks/like/:id', track.like);
 app.put('/track/place/tag/:id', track.TagTrackWithPlace);
+app.put('/place/track/tag/:id', place.AddTrackToPlace);
 //DELETE
 app.delete('/tracks/comment/:id', track.removeComment);
 app.delete('/tracks/like/:id', track.unlike);
