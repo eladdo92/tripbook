@@ -80,12 +80,10 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
         console.log('Controller: Registering new user');
         serverProxy.Register(user)
         .success(function() {
-            
-                userManager.login(user.email, user.password).done(function() {
-                tripbookController.init();
+                userManager.login(user.email, user.password, function() {
+                    location.replace("#feed");
+                    init();
                 });
-
-                init();
             })
             .fail(function(error) {
                 //htmlGenerator.generateError();
