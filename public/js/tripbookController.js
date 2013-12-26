@@ -96,9 +96,33 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
 
     function postTrack(track) {
         console.log('Controller: Posting a track');
+        track.places = [];
+        var regexp = new RegExp('#([^\\s]*)','g');//finds all hashtags
+        var placesArray = [];
+        placesArray = track.content.match(regexp);
+        for (var i = 0; i < placesArray.length; i++) {
+            var currentPlaceName = placesArray[i].replace('#', '');
+            var place = $.parseJSON(serverProxy.getPlace(currentPlaceName).responseText);
+            //if(place && place.responseText.indexOf('"error": "An error has occurred"') === -1 ){
+            if(place && place.error !== 'An error has occurred'){
+                track.places.push(place);
+            }
+            else{//Create a new place
+                serverProxy.addPlace(currentPlaceName);
+                var newPlace = $.parseJSON(serverProxy.getPlace(currentPlaceName).responseText);
+                if(newPlace){
+                    track.places.push(newPlace);
+                }
+            }
+        }
+
+        console.log(track);
+       
         serverProxy.PostTrack(track)
         .success(function() {
                 alert('post success');
+                location.replace("#feed");
+                init();
             })
             .fail(function(error) {
                 alert("Error can't post track, error:" + error);
