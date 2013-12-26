@@ -36,3 +36,12 @@ exports.SearchPlace = function (req, res) {
     }
 };
 
+exports.AddPlace = function (req, res) {
+    var Place = req.body;
+    dal.addPlace(Place, function (err, result) {
+        if (result)
+            res.send(result);
+        else
+            res.send({'error': 'An error has occurred'});
+    });
+};
