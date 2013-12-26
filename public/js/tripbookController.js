@@ -157,7 +157,7 @@ var tripbookController = (function($, serverProxy, htmlGenerator, userManager) {
                 $('#feedContent').html(htmlGenerator.loginLink());
             }
             var id;
-            if(id = urlParams.id) {
+            if(id = userManager.getCurrentUser()._id) {
                 getProfile(id).then(function(profile) {
                     $('#profileContent').append(htmlGenerator.getTitle(urlParams.name));
                     var addFriendBtn = htmlGenerator.generateAddFriendBtn(userManager.isUserFriendsWith(id), id);
