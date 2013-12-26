@@ -33,6 +33,8 @@ else {
     }
 }
 
+var BSON = require('mongodb').BSONPure;
+
 var generate_mongo_url = function (obj) {
     obj.hostname = (obj.hostname || 'localhost');
     obj.port = (obj.port || 27017);
@@ -121,6 +123,17 @@ exports.getPlaceByName = function (placeName, callback) {
 exports.addPlace = function (placeName, callback) {
     db.collection(collection_name, function (err, collection) {
         collection.insert(placeName, {safe: true}, function (err, result) {
+            if (err)
+                callback(err, null);
+            else
+                callback(null, result[0]);
+        });
+    });
+};
+
+exports.addTrackToPlace = function (track, placeId, callback) {
+    db.collection(collection_name, function (err, collection) {
+        collection.update({'_id': BSON.ObjectID(placeId)}, {$push: {'tracks': track}}, function (err, result) {
             if (err)
                 callback(err, null);
             else
