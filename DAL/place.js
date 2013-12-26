@@ -117,3 +117,14 @@ exports.getPlaceByName = function (placeName, callback) {
         });
     });
 };
+
+exports.addPlace = function (placeName, callback) {
+    db.collection(collection_name, function (err, collection) {
+        collection.insert(placeName, {safe: true}, function (err, result) {
+            if (err)
+                callback(err, null);
+            else
+                callback(null, result[0]);
+        });
+    });
+};
