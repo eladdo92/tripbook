@@ -68,6 +68,18 @@ var serverProxy = (function($) {
         var url = baseUrl + 'tracks/new';
         return $.ajax({ type: 'POST', url: url, data: track });  
     }
+    
+    function addPlace(placeName) {
+        var place = {};
+        place.name = placeName;
+        var url = baseUrl + 'places/new';
+        return $.ajax({ type: 'POST', url: url, data: place, async:false });  
+    }
+
+    function getPlace(placeName) {
+        var url = baseUrl + 'place?placeName=' + placeName;
+        return $.ajax({ type: 'GET', dataType: "json", url: url, async:false });  
+    }
 
     function addFriend(userId, friendId) {
         var data = {
@@ -110,7 +122,9 @@ var serverProxy = (function($) {
         comment: comment,
         addFriend: addFriend,
         getUsers: getUsers,
-        getPlaces: getPlaces
+        getPlaces: getPlaces,
+        getPlace: getPlace,
+        addPlace: addPlace
     };
 
 })(jQuery);
