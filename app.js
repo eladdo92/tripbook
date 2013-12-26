@@ -35,6 +35,7 @@ app.get('/', routes.index);
 //CREATE
 app.post('/users/new', user.Register);
 app.post('/tracks/new', track.PostTrack);
+app.post('/places/new', place.AddPlace);
 //READ
 app.get('/users', user.SearchUser);
 app.post('/login', user.IsUserExist);
