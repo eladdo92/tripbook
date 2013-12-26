@@ -49,10 +49,6 @@ exports.AddPlace = function (req, res) {
 exports.AddTrackToPlace = function (req, res) {
     var track = req.body;
     var placeId = req.params.id;
-    console.log('woot');
-    console.log(track);
-    console.log(placeId);
-
     dal.addTrackToPlace(track, placeId, function (err, result) {
         if (result)
             res.send(result);
