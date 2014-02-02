@@ -9,6 +9,11 @@ var userManager = (function(serverProxy) {
             if(!user.error){
                 isLoggedIn = true;
                 currentUser = user;
+                var socket = io.connect();
+                socket.send();
+                socket.on('message', function() {
+                    alert('משתמש נוסף התחבר לtripbook!');
+                });
             }
             callback();
         });
